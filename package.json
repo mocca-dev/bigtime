@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "eva-icons": "^1.1.1",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-scripts": "2.1.8"
@@ -11,7 +12,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "clean-map": "rimraf build/**/*.map",
+    "deploy": "npm run build && npm run clean-map && cd build && surge -d https://bigtime.surge.sh"
   },
   "eslintConfig": {
     "extends": "react-app"
