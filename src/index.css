@@ -1,7 +1,7 @@
 html {
   box-sizing: border-box;
 
-  --primaryBg: #fff;
+  --primaryBg: white;
   --primaryFg: #000;
   --primaryRGBA: rgba(0, 0, 0, 0.45);
   --secondRGBA: rgba(0, 0, 0, 0.15);
@@ -9,13 +9,18 @@ html {
 }
 
 html[data-theme="dark"] {
-  --primaryBg: #000;
+  --primaryBg: black;
   --primaryFg: #fff;
   --primaryRGBA: rgba(255, 255, 255, 0.45);
   --secondRGBA: rgba(255, 255, 255, 0.15);
   --svgColor: 0;
 }
 
+* {
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: transparent;
+  outline: none !important;
+}
 *,
 *:before,
 *:after {
@@ -26,6 +31,7 @@ html[data-theme="dark"] {
   -webkit-tap-highlight-color: transparent;
   outline: none !important;
 }
+
 body {
   margin: 0;
   padding: 0;
@@ -44,9 +50,15 @@ code {
     monospace;
 }
 
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
 .icon {
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   filter: invert(var(--svgColor));
 }
 .App {
@@ -65,7 +77,7 @@ code {
 .input-audio + label {
   position: absolute;
   right: 0;
-  bottom: calc(15vh + 10px);
+  bottom: calc(8vh + 10px);
   width: 100%;
   padding: 15px;
   text-transform: uppercase;
@@ -104,7 +116,7 @@ code {
   background-color: #172a84;
   color: white;
   width: 100%;
-  height: 15vh;
+  height: 100%;
   text-transform: uppercase;
 }
 .btn-play span {
@@ -113,6 +125,10 @@ code {
 }
 .btn-play:disabled {
   background-color: #0f1842;
+}
+
+.btn:active {
+  opacity: 0.5;
 }
 
 .btn-play .icon {
@@ -178,11 +194,6 @@ span {
   border-right: 3px solid var(--primaryFg);
 }
 
-.progress-bar:hover,
-.progress-bar:active {
-  border-right: 10px solid var(--primaryFg);
-}
-
 .track-name {
   font-size: 2em;
   float: left;
@@ -192,12 +203,44 @@ span {
   margin-bottom: 50px;
 }
 
+.toaster-container {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 45vh;
+  width: calc(100vw - 10px);
+  padding: 17px;
+  padding-right: 0;
+  margin: 0 5px;
+  background-color: var(--primaryFg);
+  color: var(--primaryBg);
+  height: 50px;
+  align-items: center;
+}
+.toaster-btns {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
+.toaster-btns button {
+  padding: 16px;
+  color: var(--primaryBg);
+  /* background: red; */
+  text-transform: uppercase;
+}
+
+.toaster-btns button:first-child {
+  margin-right: 10px;
+}
+
 @media only screen and (orientation: landscape) {
   .btn-play span {
     font-size: 2em;
   }
   span {
-    font-size: 25vw;
+    top: 20px;
+    font-size: 30vw;
   }
   .time-display {
     margin-bottom: 0;
@@ -207,6 +250,6 @@ span {
   }
   .input-audio + label {
     left: 0;
-    width: 50%;
+    bottom: calc(15vh + 10px);
   }
 }

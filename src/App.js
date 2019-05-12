@@ -2,10 +2,11 @@ import React, { Component } from "react";
 // import logo from "./logo.svg";
 import "./App.css";
 import TimeDisplay from "./components/TimeDisplay";
-import { register } from "./serviceWorker";
+import register from "./../src/serviceWorker";
 import ProgressBar from "./components/ProgressBar";
 import AudioUpload from "./components/AudioUpload";
 import ToggleBtn from "./components/ToggleBtn";
+import Toaster from "./components/Toaster";
 
 class App extends Component {
   constructor(props) {
@@ -20,11 +21,10 @@ class App extends Component {
       lightTheme: true,
       songName: null,
       autoPlay: true,
-      mouseDown: false
+      showToaster: false
     };
     // eslint-disable-next-line
     let playerRef, audioInputRef;
-    register();
   }
 
   toggleTheme() {
@@ -112,22 +112,24 @@ class App extends Component {
       minutes,
       seconds,
       playing,
-      trackName,
-      lightTheme
+      lightTheme,
+      showToaster,
+      songName
     } = this.state;
 
     const progressWidth = this.convertCurrentTimeToWidth();
     return (
       <div className="App">
+        {showToaster && (
+          <Toaster
+            content="Nueva actualizacion!"
+            close={() => this.setState({ showToaster: false })}
+            refrehs={() => this.refreshApp()}
+          />
+        )}
         <ProgressBar
           progressWidth={progressWidth}
-          onMouseMove={e =>
-            this.state.songName &&
-            this.state.mouseDown &&
-            this.convertOffsetXToCurrentTime(e)
-          }
-          onMouseDown={e => this.setState({ mouseDown: true })}
-          onMouseUp={e => this.setState({ mouseDown: false })}
+          onMouseDown={e => songName && this.convertOffsetXToCurrentTime(e)}
         />
         <TimeDisplay minutes={minutes} seconds={seconds} />
         <audio
@@ -140,7 +142,7 @@ class App extends Component {
           setRef={ref => {
             this.audioInputRef = ref;
           }}
-          labelTxt={this.state.songName}
+          labelTxt={songName}
         />
         <div className="bottom-bar">
           <div className="left-btns">
@@ -166,7 +168,7 @@ class App extends Component {
             srcValueF="play.svg"
             value={playing}
             toggle={() => this.togglePlay()}
-            disabled={!this.state.songName}
+            disabled={!songName}
           />
         </div>
       </div>
