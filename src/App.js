@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-// import logo from "./logo.svg";
-import "./App.css";
 import TimeDisplay from "./components/TimeDisplay";
-import register from "./../src/serviceWorker";
 import ProgressBar from "./components/ProgressBar";
 import AudioUpload from "./components/AudioUpload";
 import ToggleBtn from "./components/ToggleBtn";
