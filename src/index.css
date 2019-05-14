@@ -2,7 +2,7 @@ html {
   box-sizing: border-box;
 
   --primaryBg: white;
-  --primaryFg: #000;
+  --primaryFg: black;
   --primaryRGBA: rgba(0, 0, 0, 0.45);
   --secondRGBA: rgba(0, 0, 0, 0.15);
   --svgColor: 1;
@@ -10,7 +10,7 @@ html {
 
 html[data-theme="dark"] {
   --primaryBg: black;
-  --primaryFg: #fff;
+  --primaryFg: white;
   --primaryRGBA: rgba(255, 255, 255, 0.45);
   --secondRGBA: rgba(255, 255, 255, 0.15);
   --svgColor: 0;
@@ -127,6 +127,10 @@ button {
   background-color: #0f1842;
 }
 
+.btn-play:disabled img {
+  opacity: 0.5;
+}
+
 .btn:active {
   opacity: 0.5;
 }
@@ -173,10 +177,6 @@ button {
   background-color: #920d0d;
 }
 
-span {
-  font-size: 35vw;
-}
-
 .progress-bar-container {
   position: relative;
   width: 100%;
@@ -200,6 +200,8 @@ span {
 
 .time-display {
   margin-bottom: 50px;
+  text-align: center;
+  font-size: 40vw;
 }
 
 .toaster-container {
@@ -225,7 +227,6 @@ span {
 .toaster-btns button {
   padding: 16px;
   color: var(--primaryBg);
-  /* background: red; */
   text-transform: uppercase;
 }
 
@@ -237,16 +238,17 @@ span {
   .btn-play span {
     font-size: 2em;
   }
-  span {
-    top: 20px;
-    font-size: 30vw;
-  }
+
   .time-display {
-    margin-bottom: 0;
+    position: relative;
+    top: -31px;
+    font-size: 14rem;
   }
+
   .btn-stop {
     top: 50vh;
   }
+
   .input-audio + label {
     left: 0;
     bottom: calc(15vh + 10px);

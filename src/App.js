@@ -24,6 +24,24 @@ class App extends Component {
     let playerRef, audioInputRef;
   }
 
+  componentDidMount() {
+    this.props.appServiceWorker.onUpdateFound(() =>
+      this.setState({ showToaster: true })
+    );
+
+    this.setState({ player: this.playerRef });
+    if (this.playerRef) {
+      this.audioInputRef.onchange = fileInput => {
+        const files = fileInput.target;
+        const file = URL.createObjectURL(files.files[0]);
+        this.setSongName(files.files[0].name);
+        this.playerRef.src = file;
+        this.togglePlay();
+      };
+    }
+    this.toggleTheme();
+  }
+
   toggleTheme() {
     const lightTheme = this.state.lightTheme ? "dark" : "light";
     this.setState({ lightTheme: !this.state.lightTheme });
@@ -66,22 +84,6 @@ class App extends Component {
     }
   }
 
-  componentDidMount() {
-    this.setState({ player: this.playerRef });
-
-    let player = this.playerRef;
-    if (player) {
-      this.audioInputRef.onchange = fileInput => {
-        const files = fileInput.target;
-        const file = URL.createObjectURL(files.files[0]);
-        this.setSongName(files.files[0].name);
-        player.src = file;
-        this.togglePlay();
-      };
-    }
-    this.toggleTheme();
-  }
-
   setSongName(songName) {
     this.setState({ songName });
   }
@@ -121,7 +123,7 @@ class App extends Component {
           <Toaster
             content="Nueva actualizacion!"
             close={() => this.setState({ showToaster: false })}
-            refrehs={() => this.refreshApp()}
+            refresh={() => window.location.reload()}
           />
         )}
         <ProgressBar
