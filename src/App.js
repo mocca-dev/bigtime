@@ -25,7 +25,8 @@ class App extends Component {
       lightTheme: true,
       songName: null,
       autoPlay: true,
-      showToaster: false
+      showToaster: false,
+      bucle: true
     };
 
     this.playerRef = React.createRef;
@@ -37,7 +38,6 @@ class App extends Component {
       this.setState({ showToaster: true })
     );
 
-    this.setState({ player: this.playerRef });
     if (this.playerRef) {
       this.audioInputRef.onchange = fileInput => {
         const files = fileInput.target;
@@ -64,7 +64,7 @@ class App extends Component {
 
   convertCurrentTimeToWidth() {
     if (this.state) {
-      const { player } = this.state;
+      const player = this.playerRef;
       const duration = player && player.duration;
       const currentTime = player && player.currentTime;
       const calc = (100 * currentTime) / duration;
@@ -73,7 +73,7 @@ class App extends Component {
   }
 
   calcTime() {
-    let { player } = this.state;
+    const player = this.playerRef;
     const totalSeconds = player.currentTime;
     const minutes = "0" + Math.floor(totalSeconds / 60);
     this.setState({ minutes });
@@ -92,12 +92,32 @@ class App extends Component {
     }
   }
 
+  isFinished() {
+    const player = this.playerRef;
+    const { duration, currentTime } = player;
+    return duration === currentTime;
+  }
+
+  restartWhenFinished() {
+    if (this.isFinished()) {
+      this.stop(this.playerRef);
+      this.playerRef.play();
+    }
+  }
+
+  stopWhenFinished() {
+    if (this.isFinished()) {
+      this.stop(this.playerRef);
+    }
+  }
+
   setSongName(songName) {
     this.setState({ songName });
   }
 
   togglePlay() {
-    const { player, playing } = this.state;
+    const { playing } = this.state;
+    const player = this.playerRef;
     if (playing) {
       player.pause();
     } else {
@@ -110,18 +130,18 @@ class App extends Component {
   stop(player) {
     player.pause();
     player.currentTime = 0;
-    this.setState({ playing: false });
+    this.togglePlay();
   }
 
   render() {
     let {
-      player,
       minutes,
       seconds,
       playing,
       lightTheme,
       showToaster,
-      songName
+      songName,
+      bucle
     } = this.state;
 
     const progressWidth = this.convertCurrentTimeToWidth();
@@ -143,7 +163,14 @@ class App extends Component {
           ref={ref => {
             this.playerRef = ref;
           }}
-          onTimeUpdate={() => this.calcTime()}
+          onTimeUpdate={() => {
+            this.calcTime();
+            if (bucle) {
+              this.restartWhenFinished();
+            } else {
+              this.stopWhenFinished();
+            }
+          }}
         />
         <AudioUpload
           setRef={ref => {
@@ -163,7 +190,7 @@ class App extends Component {
             <button
               className="btn btn-stop"
               onClick={() => {
-                this.stop(player);
+                this.stop(this.playerRef);
               }}
             >
               <StopSVG />
