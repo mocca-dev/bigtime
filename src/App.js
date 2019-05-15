@@ -27,8 +27,9 @@ class App extends Component {
       autoPlay: true,
       showToaster: false
     };
-    // eslint-disable-next-line
-    let playerRef, audioInputRef;
+
+    this.playerRef = React.createRef;
+    this.audioInputRef = React.createRef;
   }
 
   componentDidMount() {
