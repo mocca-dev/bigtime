@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const AudioUpload = ({ setRef, labelTxt }) => {
   return (
@@ -16,6 +17,11 @@ const AudioUpload = ({ setRef, labelTxt }) => {
       </label>
     </React.Fragment>
   );
+};
+
+AudioUpload.propTypes = {
+  setRef: PropTypes.func.isRequired,
+  labelTxt: PropTypes.number.isRequired
 };
 
 export default AudioUpload;

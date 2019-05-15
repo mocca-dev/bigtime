@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const ProgressBar = ({ progressWidth, onMouseDown }) => {
   return (
@@ -6,6 +7,11 @@ const ProgressBar = ({ progressWidth, onMouseDown }) => {
       <span className="progress-bar" style={{ width: progressWidth + "vw" }} />
     </div>
   );
+};
+
+ProgressBar.propTypes = {
+  progressWidth: PropTypes.number.isRequired,
+  onMouseDown: PropTypes.func.isRequired
 };
 
 export default ProgressBar;

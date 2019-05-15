@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const ToggleBtn = ({ toggle, value, cClass, IconT, IconF, disabled }) => {
   return (
@@ -6,6 +7,15 @@ const ToggleBtn = ({ toggle, value, cClass, IconT, IconF, disabled }) => {
       {value ? <IconT /> : <IconF />}
     </button>
   );
+};
+
+ToggleBtn.propTypes = {
+  toggle: PropTypes.func.isRequired,
+  value: PropTypes.bool.isRequired,
+  cClass: PropTypes.string.isRequired,
+  IconT: PropTypes.element.isRequired,
+  IconF: PropTypes.element.isRequired,
+  disabled: PropTypes.bool.isRequired
 };
 
 export default ToggleBtn;

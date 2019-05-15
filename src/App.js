@@ -16,7 +16,6 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      player: null,
       minutes: "00",
       seconds: "00",
       playing: false,
@@ -151,7 +150,7 @@ class App extends Component {
           <Toaster
             content="Nueva actualizacion!"
             close={() => this.setState({ showToaster: false })}
-            refresh={() => window.location.reload()}
+            ok={() => window.location.reload()}
           />
         )}
         <ProgressBar
@@ -173,9 +172,7 @@ class App extends Component {
           }}
         />
         <AudioUpload
-          setRef={ref => {
-            this.audioInputRef = ref;
-          }}
+          setRef={ref => (this.audioInputRef = ref)}
           labelTxt={songName}
         />
         <div className="bottom-bar">
