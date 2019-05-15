@@ -4,6 +4,13 @@ import ProgressBar from "./components/ProgressBar";
 import AudioUpload from "./components/AudioUpload";
 import ToggleBtn from "./components/ToggleBtn";
 import Toaster from "./components/Toaster";
+import {
+  PlaySVG,
+  PauseSVG,
+  StopSVG,
+  MoonSVG,
+  SunSVG
+} from "./components/Icons";
 
 class App extends Component {
   constructor(props) {
@@ -147,8 +154,8 @@ class App extends Component {
           <div className="left-btns">
             <ToggleBtn
               cClass="btn btn-theme"
-              srcValueT="moon.svg"
-              srcValueF="sun.svg"
+              IconT={MoonSVG}
+              IconF={SunSVG}
               value={lightTheme}
               toggle={() => this.toggleTheme()}
             />
@@ -158,13 +165,13 @@ class App extends Component {
                 this.stop(player);
               }}
             >
-              <img className="icon" src="stop.svg" alt="" />
+              <StopSVG />
             </button>
           </div>
           <ToggleBtn
             cClass="btn btn-play"
-            srcValueT="pause.svg"
-            srcValueF="play.svg"
+            IconT={PauseSVG}
+            IconF={PlaySVG}
             value={playing}
             toggle={() => this.togglePlay()}
             disabled={!songName}
