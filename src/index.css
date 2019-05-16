@@ -28,6 +28,7 @@
   height: 50px;
   align-items: center;
 }
+
 .toaster-btns {
   display: flex;
   height: 100%;
@@ -42,6 +43,19 @@
 
 .toaster-btns button:first-child {
   margin-right: 10px;
+}
+
+.settings-bar {
+  display: flex;
+  padding: 3px;
+  margin: auto;
+  border-radius: 5px;
+  width: calc(100vw - 5px);
+  background-color: darkgray;
+}
+
+.repeat-disabled {
+  opacity: 0.3;
 }
 
 @media only screen and (orientation: landscape) {

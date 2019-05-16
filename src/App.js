@@ -4,7 +4,8 @@ import ProgressBar from "./components/ProgressBar";
 import AudioUpload from "./components/AudioUpload";
 import ToggleBtn from "./components/ToggleBtn";
 import Toaster from "./components/Toaster";
-import ToggleTheme from "./components/ToggleTheme";
+import SettingsBtn from "./components/SettingsBtn";
+import SettingsBar from "./components/SettingsBar";
 import { PlaySVG, PauseSVG, StopSVG } from "./components/Icons";
 
 class App extends Component {
@@ -18,6 +19,7 @@ class App extends Component {
       songName: null,
       autoPlay: true,
       showToaster: false,
+      showSettings: false,
       bucle: true
     };
 
@@ -26,6 +28,8 @@ class App extends Component {
   }
 
   componentDidMount() {
+    document.documentElement.setAttribute("data-theme", "dark");
+
     this.props.appServiceWorker.onUpdateFound(() =>
       this.setState({ showToaster: true })
     );
@@ -124,10 +128,12 @@ class App extends Component {
       playing,
       showToaster,
       songName,
-      bucle
+      bucle,
+      showSettings
     } = this.state;
 
     const progressWidth = this.convertCurrentTimeToWidth();
+
     return (
       <div className="App">
         {showToaster && (
@@ -159,26 +165,36 @@ class App extends Component {
           setRef={ref => (this.audioInputRef = ref)}
           labelTxt={songName}
         />
-        <div className="bottom-bar">
-          <div className="left-btns">
-            <ToggleTheme />
-            <button
-              className="btn btn-stop"
-              onClick={() => {
-                this.stop(this.playerRef);
-              }}
-            >
-              <StopSVG />
-            </button>
+        <div className="bottom">
+          {this.state.showSettings && (
+            <SettingsBar
+              bucle={bucle}
+              toggleBucle={() => this.setState({ bucle: !bucle })}
+            />
+          )}
+          <div className="bottom-bar">
+            <div className="left-btns">
+              <SettingsBtn
+                onClick={() => this.setState({ showSettings: !showSettings })}
+              />
+              <button
+                className="btn btn-stop"
+                onClick={() => {
+                  this.stop(this.playerRef);
+                }}
+              >
+                <StopSVG />
+              </button>
+            </div>
+            <ToggleBtn
+              cClass="btn btn-play"
+              IconT={PauseSVG}
+              IconF={PlaySVG}
+              value={playing}
+              toggle={() => this.togglePlay()}
+              disabled={!songName}
+            />
           </div>
-          <ToggleBtn
-            cClass="btn btn-play"
-            IconT={PauseSVG}
-            IconF={PlaySVG}
-            value={playing}
-            toggle={() => this.togglePlay()}
-            disabled={!songName}
-          />
         </div>
       </div>
     );
