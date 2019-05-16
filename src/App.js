@@ -4,13 +4,8 @@ import ProgressBar from "./components/ProgressBar";
 import AudioUpload from "./components/AudioUpload";
 import ToggleBtn from "./components/ToggleBtn";
 import Toaster from "./components/Toaster";
-import {
-  PlaySVG,
-  PauseSVG,
-  StopSVG,
-  MoonSVG,
-  SunSVG
-} from "./components/Icons";
+import ToggleTheme from "./components/ToggleTheme";
+import { PlaySVG, PauseSVG, StopSVG } from "./components/Icons";
 
 class App extends Component {
   constructor(props) {
@@ -19,7 +14,6 @@ class App extends Component {
       minutes: "00",
       seconds: "00",
       playing: false,
-      mouseX: 0,
       progressWidth: 0,
       lightTheme: true,
       songName: null,
@@ -46,13 +40,6 @@ class App extends Component {
         this.togglePlay();
       };
     }
-    this.toggleTheme();
-  }
-
-  toggleTheme() {
-    const lightTheme = this.state.lightTheme ? "dark" : "light";
-    this.setState({ lightTheme: !this.state.lightTheme });
-    document.documentElement.setAttribute("data-theme", lightTheme);
   }
 
   convertOffsetXToCurrentTime(e) {
@@ -137,7 +124,6 @@ class App extends Component {
       minutes,
       seconds,
       playing,
-      lightTheme,
       showToaster,
       songName,
       bucle
@@ -177,13 +163,7 @@ class App extends Component {
         />
         <div className="bottom-bar">
           <div className="left-btns">
-            <ToggleBtn
-              cClass="btn btn-theme"
-              IconT={MoonSVG}
-              IconF={SunSVG}
-              value={lightTheme}
-              toggle={() => this.toggleTheme()}
-            />
+            <ToggleTheme />
             <button
               className="btn btn-stop"
               onClick={() => {

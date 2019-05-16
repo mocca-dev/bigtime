@@ -13,8 +13,8 @@ ToggleBtn.propTypes = {
   toggle: PropTypes.func.isRequired,
   value: PropTypes.bool.isRequired,
   cClass: PropTypes.string.isRequired,
-  IconT: PropTypes.element.isRequired,
-  IconF: PropTypes.element.isRequired,
+  IconT: PropTypes.func.isRequired,
+  IconF: PropTypes.func.isRequired,
   disabled: PropTypes.bool.isRequired
 };
 

@@ -21,7 +21,7 @@ const AudioUpload = ({ setRef, labelTxt }) => {
 
 AudioUpload.propTypes = {
   setRef: PropTypes.func.isRequired,
-  labelTxt: PropTypes.number.isRequired
+  labelTxt: PropTypes.number
 };
 
 export default AudioUpload;
