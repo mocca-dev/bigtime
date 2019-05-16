@@ -14,7 +14,6 @@ class App extends Component {
       minutes: "00",
       seconds: "00",
       playing: false,
-      progressWidth: 0,
       lightTheme: true,
       songName: null,
       autoPlay: true,
@@ -35,7 +34,7 @@ class App extends Component {
       this.audioInputRef.onchange = fileInput => {
         const files = fileInput.target;
         const file = URL.createObjectURL(files.files[0]);
-        this.setSongName(files.files[0].name);
+        this.setState({ songName: files.files[0].name });
         this.playerRef.src = file;
         this.togglePlay();
       };
@@ -88,6 +87,7 @@ class App extends Component {
     if (this.isFinished()) {
       this.stop(this.playerRef);
       this.playerRef.play();
+      this.setState({ playing: true });
     }
   }
 
@@ -95,10 +95,6 @@ class App extends Component {
     if (this.isFinished()) {
       this.stop(this.playerRef);
     }
-  }
-
-  setSongName(songName) {
-    this.setState({ songName });
   }
 
   togglePlay() {
@@ -114,9 +110,11 @@ class App extends Component {
   }
 
   stop(player) {
-    player.pause();
-    player.currentTime = 0;
-    this.togglePlay();
+    if (player) {
+      player.pause();
+      player.currentTime = 0;
+      this.togglePlay();
+    }
   }
 
   render() {
