@@ -3,7 +3,7 @@
 }
 
 .btn-play:disabled {
-  background-color: #0f1842;
+  background-color: var(--bluePlay);
 }
 
 .btn-play:disabled svg {
