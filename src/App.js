@@ -32,16 +32,14 @@ const App = ({ appServiceWorker }) => {
   });
 
   useEffect(() => {
-    if (playerRef.current && audioInputRef.current) {
-      audioInputRef.current.onchange = fileInput => {
-        const files = fileInput.target;
-        const file = URL.createObjectURL(files.files[0]);
-        setSongName(files.files[0].name);
-        playerRef.current.src = file;
-        togglePlay();
-      };
-    }
-  });
+    audioInputRef.current.onchange = fileInput => {
+      const files = fileInput.target;
+      const file = URL.createObjectURL(files.files[0]);
+      setSongName(files.files[0].name);
+      playerRef.current.src = file;
+      togglePlay();
+    };
+  }, []);
 
   useEffect(() => {
     setProgressWidth(convertCurrentTimeToWidth());
@@ -132,6 +130,7 @@ const App = ({ appServiceWorker }) => {
       <ProgressBar
         progressWidth={progressWidth}
         onMouseDown={e => songName && convertOffsetXToCurrentTime(e)}
+        duration={playerRef.current ? playerRef.current.duration : 0}
       />
       <TimeDisplay minutes={minutes} seconds={seconds} />
       <audio
