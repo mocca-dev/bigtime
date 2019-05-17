@@ -12,7 +12,7 @@ const App = ({ appServiceWorker }) => {
   const [minutes, setMinutes] = useState("00");
   const [seconds, setSeconds] = useState("00");
   const [playing, setPlaying] = useState(false);
-  // const [theme, setTheme] = useState(true);
+  const [theme, setTheme] = useState(false);
   const [songName, setSongName] = useState(null);
   const [showToaster, setShowToaster] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
@@ -23,7 +23,8 @@ const App = ({ appServiceWorker }) => {
   const audioInputRef = useRef(null);
 
   useEffect(() => {
-    document.documentElement.setAttribute("data-theme", "dark");
+    if (!document.documentElement.getAttribute("data-theme"))
+      document.documentElement.setAttribute("data-theme", "dark");
   });
 
   useEffect(() => {
@@ -147,7 +148,13 @@ const App = ({ appServiceWorker }) => {
       <AudioUpload ref={audioInputRef} labelTxt={songName} />
       <div className="bottom">
         {showSettings && (
-          <SettingsBar bucle={bucle} toggleBucle={() => setBucle(!bucle)} />
+          <SettingsBar
+            data={{ bucle: bucle, theme: theme }}
+            actions={{
+              toggleBucle: () => setBucle(!bucle),
+              setTheme: () => setTheme(!theme)
+            }}
+          />
         )}
         <div className="bottom-bar">
           <div className="left-btns">

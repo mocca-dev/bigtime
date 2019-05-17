@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import ToggleBtn from "./ToggleBtn";
 import { MoonSVG, SunSVG } from "./Icons";
 
-const ToggleTheme = () => {
-  const [theme, setTheme] = useState(false);
-
+const ToggleTheme = ({ theme, setTheme }) => {
   useEffect(() => {
     document.documentElement.setAttribute(
       "data-theme",
@@ -12,17 +10,13 @@ const ToggleTheme = () => {
     );
   });
 
-  const toggle = () => {
-    setTheme(!theme);
-  };
-
   return (
     <ToggleBtn
       cClass="btn btn-theme"
       IconT={MoonSVG}
       IconF={SunSVG}
       value={theme}
-      toggle={toggle}
+      toggle={setTheme}
       disabled={false}
     />
   );
