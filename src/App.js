@@ -3,10 +3,10 @@ import TimeDisplay from "./components/TimeDisplay";
 import ProgressBar from "./components/ProgressBar";
 import AudioUpload from "./components/AudioUpload";
 import ToggleBtn from "./components/ToggleBtn";
-import Toaster from "./components/Toaster";
 import SettingsBtn from "./components/SettingsBtn";
 import SettingsBar from "./components/SettingsBar";
 import { PlaySVG, PauseSVG, StopSVG } from "./components/Icons";
+import UpdateCheck from "./components/UpdateCheck";
 
 const App = ({ appServiceWorker }) => {
   const [minutes, setMinutes] = useState("00");
@@ -14,7 +14,6 @@ const App = ({ appServiceWorker }) => {
   const [playing, setPlaying] = useState(false);
   const [theme, setTheme] = useState(false);
   const [songName, setSongName] = useState(null);
-  const [showToaster, setShowToaster] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [bucle, setBucle] = useState(true);
   const [progressWidth, setProgressWidth] = useState(0);
@@ -25,10 +24,6 @@ const App = ({ appServiceWorker }) => {
   useEffect(() => {
     if (!document.documentElement.getAttribute("data-theme"))
       document.documentElement.setAttribute("data-theme", "dark");
-  });
-
-  useEffect(() => {
-    appServiceWorker.onUpdateFound(() => setShowToaster(true));
   });
 
   useEffect(() => {
@@ -120,13 +115,7 @@ const App = ({ appServiceWorker }) => {
 
   return (
     <div className="App">
-      {showToaster && (
-        <Toaster
-          content="Nueva actualizacion!"
-          close={() => setShowToaster(false)}
-          ok={() => window.location.reload()}
-        />
-      )}
+      <UpdateCheck appServiceWorker={appServiceWorker} />
       <ProgressBar
         progressWidth={progressWidth}
         onMouseDown={e => songName && convertOffsetXToCurrentTime(e)}
