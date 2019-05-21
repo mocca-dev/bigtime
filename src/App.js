@@ -7,6 +7,7 @@ import SettingsBtn from "./components/SettingsBtn";
 import SettingsBar from "./components/SettingsBar";
 import { PlaySVG, PauseSVG, StopSVG } from "./components/Icons";
 import UpdateCheck from "./components/UpdateCheck";
+import OutsideClick from "./components/OutsideClick";
 
 const App = ({ appServiceWorker }) => {
   const [minutes, setMinutes] = useState("00");
@@ -136,13 +137,15 @@ const App = ({ appServiceWorker }) => {
       <AudioUpload ref={audioInputRef} labelTxt={songName} />
       <div className="bottom">
         {showSettings && (
-          <SettingsBar
-            data={{ bucle: bucle, theme: theme }}
-            actions={{
-              toggleBucle: () => setBucle(!bucle),
-              setTheme: () => setTheme(!theme)
-            }}
-          />
+          <OutsideClick action={() => setShowSettings(false)}>
+            <SettingsBar
+              data={{ bucle: bucle, theme: theme }}
+              actions={{
+                toggleBucle: () => setBucle(!bucle),
+                setTheme: () => setTheme(!theme)
+              }}
+            />
+          </OutsideClick>
         )}
         <div className="bottom-bar">
           <div className="left-btns">
