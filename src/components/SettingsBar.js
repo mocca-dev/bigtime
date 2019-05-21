@@ -1,6 +1,6 @@
 import React from "react";
 
-import { RepeatSVG, RepeatSVGDisabled } from "./Icons";
+import { RepeatSVG, RepeatSVGDisabled, RefreshSVG } from "./Icons";
 import ToggleTheme from "./ToggleTheme";
 import ToggleBtn from "./ToggleBtn";
 
@@ -18,7 +18,16 @@ const SettingsBar = ({ data, actions }) => {
         value={bucle}
         toggle={() => {
           toggleBucle();
-          console.log("repeat");
+        }}
+        disabled={false}
+      />
+      <ToggleBtn
+        cClass="btn btn-theme"
+        IconT={RefreshSVG}
+        IconF={RefreshSVG}
+        value={true}
+        toggle={() => {
+          window.location.reload();
         }}
         disabled={false}
       />
