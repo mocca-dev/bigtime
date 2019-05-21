@@ -44,18 +44,19 @@ const App = ({ appServiceWorker }) => {
     setProgressWidth(convertCurrentTimeToWidth());
   });
 
-  const play = () => {
-    if (delay) {
-      while (delay > 0) {
-        setTimeout(() => {
-          setDelay(delay - 1);
-        }, 1000);
-      }
-      togglePlay();
-    } else {
-      togglePlay();
-    }
-  };
+  // const play = () => {
+  //   if (delay) {
+  //     while (delay > 0) {
+  //       setTimeout(() => {
+  //         setDelay(delay - 1);
+  //       }, 1000);
+  //     }
+  //     togglePlay();
+  //   } else {
+  //     togglePlay();
+  //   }
+  // };
+
   const convertOffsetXToCurrentTime = e => {
     playerRef.current.currentTime =
       playerRef &&
@@ -132,13 +133,13 @@ const App = ({ appServiceWorker }) => {
   return (
     <div className="App">
       <UpdateCheck appServiceWorker={appServiceWorker} />
-      {showDelayModal && (
+      {/* {showDelayModal && (
         <DelayModal
           delay={delay}
           setDelay={setDelay}
           setShowDelayModal={setShowDelayModal}
         />
-      )}
+      )} */}
       <ProgressBar
         progressWidth={progressWidth}
         onMouseDown={e => songName && convertOffsetXToCurrentTime(e)}
@@ -188,7 +189,7 @@ const App = ({ appServiceWorker }) => {
             IconT={PauseSVG}
             IconF={PlaySVG}
             value={playing}
-            toggle={() => play()}
+            toggle={() => togglePlay()}
             disabled={!songName}
           />
         </div>
