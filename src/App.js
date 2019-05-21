@@ -7,6 +7,8 @@ import SettingsBtn from "./components/SettingsBtn";
 import SettingsBar from "./components/SettingsBar";
 import { PlaySVG, PauseSVG, StopSVG } from "./components/Icons";
 import UpdateCheck from "./components/UpdateCheck";
+import DelayModal from "./components/DelayModal";
+import DelayDisplay from "./components/DelayDisplay";
 
 const App = ({ appServiceWorker }) => {
   const [minutes, setMinutes] = useState("00");
@@ -17,6 +19,8 @@ const App = ({ appServiceWorker }) => {
   const [showSettings, setShowSettings] = useState(false);
   const [bucle, setBucle] = useState(true);
   const [progressWidth, setProgressWidth] = useState(0);
+  const [showDelayModal, setShowDelayModal] = useState(false);
+  const [delay, setDelay] = useState(0);
 
   const playerRef = useRef(null);
   const audioInputRef = useRef(null);
@@ -32,7 +36,6 @@ const App = ({ appServiceWorker }) => {
       const file = URL.createObjectURL(files.files[0]);
       setSongName(files.files[0].name);
       playerRef.current.src = file;
-      togglePlay();
     };
   }, []);
 
@@ -40,6 +43,18 @@ const App = ({ appServiceWorker }) => {
     setProgressWidth(convertCurrentTimeToWidth());
   });
 
+  const play = () => {
+    if (delay) {
+      while (delay > 0) {
+        setTimeout(() => {
+          setDelay(delay - 1);
+        }, 1000);
+      }
+      togglePlay();
+    } else {
+      togglePlay();
+    }
+  };
   const convertOffsetXToCurrentTime = e => {
     playerRef.current.currentTime =
       playerRef &&
@@ -116,11 +131,19 @@ const App = ({ appServiceWorker }) => {
   return (
     <div className="App">
       <UpdateCheck appServiceWorker={appServiceWorker} />
+      {showDelayModal && (
+        <DelayModal
+          delay={delay}
+          setDelay={setDelay}
+          setShowDelayModal={setShowDelayModal}
+        />
+      )}
       <ProgressBar
         progressWidth={progressWidth}
         onMouseDown={e => songName && convertOffsetXToCurrentTime(e)}
         duration={playerRef.current ? playerRef.current.duration : 0}
       />
+      <DelayDisplay delay={delay} />
       <TimeDisplay minutes={minutes} seconds={seconds} />
       <audio
         ref={playerRef}
@@ -140,7 +163,8 @@ const App = ({ appServiceWorker }) => {
             data={{ bucle: bucle, theme: theme }}
             actions={{
               toggleBucle: () => setBucle(!bucle),
-              setTheme: () => setTheme(!theme)
+              setTheme: () => setTheme(!theme),
+              showDelayModal: () => setShowDelayModal(!showDelayModal)
             }}
           />
         )}
@@ -161,7 +185,7 @@ const App = ({ appServiceWorker }) => {
             IconT={PauseSVG}
             IconF={PlaySVG}
             value={playing}
-            toggle={() => togglePlay()}
+            toggle={() => play()}
             disabled={!songName}
           />
         </div>

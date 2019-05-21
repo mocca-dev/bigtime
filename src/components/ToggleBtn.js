@@ -15,7 +15,7 @@ ToggleBtn.propTypes = {
   cClass: PropTypes.string.isRequired,
   IconT: PropTypes.func.isRequired,
   IconF: PropTypes.func.isRequired,
-  disabled: PropTypes.bool.isRequired
+  disabled: PropTypes.bool
 };
 
 export default ToggleBtn;

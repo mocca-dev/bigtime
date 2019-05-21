@@ -59,6 +59,29 @@
   opacity: 0.3;
 }
 
+.modal-container {
+  z-index: 10;
+  position: fixed;
+  right: calc(50vw - 28px);
+  top: calc(50vh - 25px);
+  background: var(--primaryFg);
+  color: var(--primaryBg);
+  padding: 15px;
+}
+
+.modal-container button svg {
+  fill: var(--primaryBg);
+}
+
+.modal-container .bottom-bar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.delay-display {
+  color: red;
+}
+
 @media only screen and (orientation: landscape) {
   .btn-play span {
     font-size: 2em;

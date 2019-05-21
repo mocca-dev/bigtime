@@ -6,7 +6,7 @@ import ToggleBtn from "./ToggleBtn";
 
 const SettingsBar = ({ data, actions }) => {
   const { theme, bucle } = data;
-  const { setTheme, toggleBucle } = actions;
+  const { setTheme, toggleBucle, showDelayModal } = actions;
 
   return (
     <div className="settings-bar">
@@ -18,9 +18,16 @@ const SettingsBar = ({ data, actions }) => {
         value={bucle}
         toggle={() => {
           toggleBucle();
-          console.log("repeat");
         }}
-        disabled={false}
+      />
+      <ToggleBtn
+        cClass="btn btn-theme"
+        IconT={RepeatSVG}
+        IconF={RepeatSVG}
+        value={bucle}
+        toggle={() => {
+          showDelayModal();
+        }}
       />
     </div>
   );
