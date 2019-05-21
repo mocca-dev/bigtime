@@ -9,6 +9,7 @@ import { PlaySVG, PauseSVG, StopSVG } from "./components/Icons";
 import UpdateCheck from "./components/UpdateCheck";
 import DelayModal from "./components/DelayModal";
 import DelayDisplay from "./components/DelayDisplay";
+import OutsideClick from "./components/OutsideClick";
 
 const App = ({ appServiceWorker }) => {
   const [minutes, setMinutes] = useState("00");
@@ -159,14 +160,16 @@ const App = ({ appServiceWorker }) => {
       <AudioUpload ref={audioInputRef} labelTxt={songName} />
       <div className="bottom">
         {showSettings && (
-          <SettingsBar
-            data={{ bucle: bucle, theme: theme }}
-            actions={{
-              toggleBucle: () => setBucle(!bucle),
-              setTheme: () => setTheme(!theme),
-              showDelayModal: () => setShowDelayModal(!showDelayModal)
-            }}
-          />
+          <OutsideClick action={() => setShowSettings(false)}>
+            <SettingsBar
+              data={{ bucle: bucle, theme: theme }}
+              actions={{
+                toggleBucle: () => setBucle(!bucle),
+                setTheme: () => setTheme(!theme),
+                showDelayModal: () => setShowDelayModal(!showDelayModal)
+              }}
+            />
+          </OutsideClick>
         )}
         <div className="bottom-bar">
           <div className="left-btns">

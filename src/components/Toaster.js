@@ -1,12 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { RefreshSVG, CloseSVG } from "./Icons";
 
 const Toaster = ({ content, close, ok }) => (
   <div className="toaster-container">
     <div>{content}</div>
     <div className="toaster-btns">
-      <button onClick={() => ok()}>actualizar</button>
-      <button onClick={() => close()}>cerrar</button>
+      <button onClick={() => ok()}>
+        <RefreshSVG />
+      </button>
+      <button onClick={() => close()}>
+        <CloseSVG />
+      </button>
     </div>
   </div>
 );

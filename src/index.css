@@ -20,14 +20,15 @@
   justify-content: space-between;
   position: absolute;
   top: 45vh;
-  width: calc(100vw - 10px);
+  width: calc(100vw - 16px);
   padding: 17px;
   padding-right: 0;
-  margin: 0 5px;
+  margin: 0 8px;
   background-color: var(--primaryFg);
   color: var(--primaryBg);
   height: 50px;
   align-items: center;
+  border-radius: 4px;
 }
 
 .toaster-btns {
@@ -44,6 +45,16 @@
 
 .toaster-btns button:first-child {
   margin-right: 10px;
+}
+
+.toaster-btns button svg {
+  height: 19px;
+  fill: #777;
+}
+
+.toaster-btns button:nth-child(2) svg {
+  height: 21px;
+  transform: rotate(45deg);
 }
 
 .settings-bar {
