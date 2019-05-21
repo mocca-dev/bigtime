@@ -113,6 +113,34 @@ const RepeatSVGDisabled = () => (
   </svg>
 );
 
+const CloseSVG = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+  >
+    <polygon
+      fillRule="evenodd"
+      points="13 11 22 11 22 13 13 13 13 22 11 22 11 13 2 13 2 11 11 11 11 2 13 2"
+    />
+  </svg>
+);
+
+const RefreshSVG = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+  >
+    <path
+      fillRule="evenodd"
+      d="M17.8069373,7 C16.4464601,5.07869636 14.3936238,4 12,4 C7.581722,4 4,7.581722 4,12 C4,16.418278 7.581722,20 12,20 C16.418278,20 20,16.418278 20,12 L22,12 C22,17.5228475 17.5228475,22 12,22 C6.4771525,22 2,17.5228475 2,12 C2,6.4771525 6.4771525,2 12,2 C14.8042336,2 17.274893,3.18251178 19,5.27034886 L19,2 L21,2 L21,9 L14,9 L14,7 L17.8069373,7 Z"
+    />
+  </svg>
+);
+
 export {
   PlaySVG,
   PauseSVG,
@@ -121,5 +149,7 @@ export {
   SunSVG,
   SettingsSVG,
   RepeatSVG,
-  RepeatSVGDisabled
+  RepeatSVGDisabled,
+  CloseSVG,
+  RefreshSVG
 };

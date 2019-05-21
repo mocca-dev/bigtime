@@ -3,10 +3,14 @@ import Toaster from "./Toaster";
 
 const UpdateCheck = ({ appServiceWorker }) => {
   const [show, setShow] = useState(false);
+  const [updated, setUpdated] = useState(false);
 
   useEffect(() => {
-    appServiceWorker.onUpdateFound(() => setShow(true));
-  });
+    appServiceWorker.onUpdateFound(() => {
+      setShow(true);
+      setUpdated(true);
+    });
+  }, [updated]);
 
   return (
     <Fragment>
