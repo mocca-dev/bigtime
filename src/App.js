@@ -5,12 +5,14 @@ import { firebaseAppAuth, providers } from "./firebase/firebaseConfig";
 import LoginScreen from "./components/login/LoginScreen";
 import MainScreen from "./components/MainScreen";
 import AuthenticatedRoute from "./components/AuthtenticatedRoute";
+import UpdateCheck from "./components/UpdateCheck";
 
 class App extends Component {
   constructor(props) {
     super();
     this.state = {
-      authenticated: false
+      authenticated: true,
+      update: false
     };
   }
   componentDidMount() {
@@ -19,17 +21,19 @@ class App extends Component {
   }
 
   render() {
-    const { user, signOut, signInWithGoogle } = this.props;
+    const { user, signOut, signInWithGoogle, appServiceWorker } = this.props;
     return (
       <div className="App">
+        <UpdateCheck
+          appServiceWorker={appServiceWorker}
+          setUpdate={() => this.setState({ update: true })}
+        />
         <Router>
           <AuthenticatedRoute
             exact
             path="/"
             authenticated={this.state.authenticated}
-            component={() => (
-              <MainScreen appServiceWorker={this.props.appServiceWorker} />
-            )}
+            component={() => <MainScreen update={this.state.update} />}
           />
           <Route
             exact
@@ -39,9 +43,7 @@ class App extends Component {
                 props={props}
                 signInWithGoogle={() => signInWithGoogle()}
                 setAuthenticated={() => {
-                  console.log("set");
                   this.setState({ authenticated: true }, () => {
-                    console.log("push");
                     props.history.push("/");
                   });
                 }}

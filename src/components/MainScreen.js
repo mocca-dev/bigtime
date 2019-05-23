@@ -7,11 +7,10 @@ import SettingsBtn from "./SettingsBtn";
 import SettingsBar from "./SettingsBar";
 // import DelayDisplay from "./DelayDisplay";
 import OutsideClick from "./OutsideClick";
-import UpdateCheck from "./UpdateCheck";
 // import DelayModal from "./DelayModal";
 import { PlaySVG, PauseSVG, StopSVG } from "./Icons";
 
-const MainScreen = ({ appServiceWorker }) => {
+const MainScreen = ({ update }) => {
   const [minutes, setMinutes] = useState("00");
   const [seconds, setSeconds] = useState("00");
   const [playing, setPlaying] = useState(false);
@@ -126,7 +125,6 @@ const MainScreen = ({ appServiceWorker }) => {
 
   return (
     <React.Fragment>
-      <UpdateCheck appServiceWorker={appServiceWorker} />
       {/* {showDelayModal && (
         <DelayModal
           delay={delay}
@@ -157,7 +155,7 @@ const MainScreen = ({ appServiceWorker }) => {
         {showSettings && (
           <OutsideClick action={() => setShowSettings(false)}>
             <SettingsBar
-              data={{ bucle: bucle, theme: theme }}
+              data={{ bucle: bucle, theme: theme, update: update }}
               actions={{
                 toggleBucle: () => setBucle(!bucle),
                 setTheme: () => setTheme(!theme),
@@ -168,7 +166,10 @@ const MainScreen = ({ appServiceWorker }) => {
         )}
         <div className="bottom-bar">
           <div className="left-btns">
-            <SettingsBtn onClick={() => setShowSettings(!showSettings)} />
+            <SettingsBtn
+              onClick={() => setShowSettings(!showSettings)}
+              update={update}
+            />
             <button
               className="btn btn-stop"
               onClick={() => {
