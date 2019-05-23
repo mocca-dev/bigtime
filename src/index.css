@@ -113,4 +113,9 @@
     left: 0;
     bottom: calc(15vh + 10px);
   }
+
+  .login input,
+  .login button {
+    width: 50%;
+  }
 }

@@ -5,10 +5,13 @@
   "dependencies": {
     "cra-append-sw": "^2.6.1",
     "eva-icons": "^1.1.1",
+    "firebase": "^6.0.2",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
+    "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
-    "react-service-worker": "^0.1.1"
+    "react-service-worker": "^0.1.1",
+    "react-with-firebase-auth": "^1.0.3"
   },
   "scripts": {
     "start": "react-scripts start",

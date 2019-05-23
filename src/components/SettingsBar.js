@@ -30,7 +30,7 @@ const SettingsBar = ({ data, actions }) => {
           window.location.reload();
         }}
       />
-      <ToggleBtn
+      {/* <ToggleBtn
         cClass="btn btn-theme"
         IconT={RepeatSVG}
         IconF={RepeatSVG}
@@ -38,7 +38,7 @@ const SettingsBar = ({ data, actions }) => {
         toggle={() => {
           showDelayModal();
         }}
-      />
+      /> */}
     </div>
   );
 };
