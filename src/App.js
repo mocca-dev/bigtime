@@ -12,32 +12,10 @@ class App extends Component {
     this.state = {
       authenticated: false
     };
-    this.signinWithoutPassword = this.signinWithoutPassword.bind(this);
   }
   componentDidMount() {
     if (!document.documentElement.getAttribute("data-theme"))
       document.documentElement.setAttribute("data-theme", "dark");
-  }
-
-  signinWithoutPassword(email) {
-    const actionCodeSettings = {
-      // URL you want to redirect back to. The domain (www.example.com) for this
-      // URL must be whitelisted in the Firebase Console.
-      url: "https://qbigtime.surge.sh/login",
-      // This must be true.
-      handleCodeInApp: true
-    };
-    firebaseAppAuth
-      .sendSignInLinkToEmail(email, actionCodeSettings)
-      .then(() => {
-        // The link was successfully sent. Inform the user.
-        // Save the email locally so you don't need to ask the user for it again
-        // if they open the link on the same device.
-        window.localStorage.setItem("emailForSignIn", email);
-      })
-      .catch(function(error) {
-        // Some error occurred, you can inspect the code: error.code
-      });
   }
 
   render() {
@@ -59,9 +37,6 @@ class App extends Component {
             component={props => (
               <LoginScreen
                 props={props}
-                singingWithPasswordless={email =>
-                  this.signinWithoutPassword(email)
-                }
                 signInWithGoogle={() => signInWithGoogle()}
                 setAuthenticated={() => {
                   console.log("set");

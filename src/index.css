@@ -10,6 +10,10 @@
   opacity: 0.25;
 }
 
+.btn-wide:disabled {
+  opacity: 0.5;
+}
+
 .btn:active {
   opacity: 0.5;
 }
@@ -91,6 +95,25 @@
 
 .delay-display {
   color: red;
+}
+
+.login div.status-msg-container {
+  font-size: 1rem;
+  width: 70%;
+  padding: 15px;
+  margin-bottom: 10px;
+}
+.status-msg-container.green {
+  background-color: #019c01;
+}
+
+.status-msg-container.red {
+  background-color: red;
+}
+
+.status-msg-container.neutral {
+  background-color: white;
+  color: black;
 }
 
 @media only screen and (orientation: landscape) {
