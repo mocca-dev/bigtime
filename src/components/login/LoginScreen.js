@@ -4,7 +4,7 @@ import { firebaseAppAuth } from "./../../firebase/firebaseConfig";
 import { GoogleSVG } from "./../Icons";
 import StatusMsg from "./StatusMsg";
 
-const LoginScreen = ({ signInWithGoogle, setAuthenticated, props }) => {
+const LoginScreen = ({ signInWithGoogle, setAuthenticated, props, user }) => {
   const [sending, setSending] = useState(false);
   const [backFromEmail, setBackFromEmail] = useState(false);
   const [statusMsg, setStatusMsg] = useState({
@@ -14,6 +14,7 @@ const LoginScreen = ({ signInWithGoogle, setAuthenticated, props }) => {
   });
 
   useEffect(() => {
+    // if (user) props.history.push("/");
     const params = new URLSearchParams(props.location.search);
     if (params.get("apiKey")) {
       fromEmail();

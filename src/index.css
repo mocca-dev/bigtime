@@ -134,6 +134,15 @@
   color: black;
 }
 
+.profile-pic {
+  margin: auto;
+  margin-right: 10px;
+  border-radius: 3px;
+  height: 50px;
+  width: 54px;
+  background: red;
+}
+
 @media only screen and (orientation: landscape) {
   .btn-play span {
     font-size: 2em;

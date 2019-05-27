@@ -6,7 +6,7 @@ import ToggleBtn from "./ToggleBtn";
 
 const SettingsBar = ({ data, actions }) => {
   const { theme, bucle, update } = data;
-  const { setTheme, toggleBucle, showDelayModal } = actions;
+  const { setTheme, toggleBucle, showDelayModal, signOut } = actions;
   const refreshClass = "btn btn-theme btn-refresh ";
 
   return (
@@ -40,6 +40,15 @@ const SettingsBar = ({ data, actions }) => {
           showDelayModal();
         }}
       /> */}
+      <button
+        className="profile-pic"
+        onClick={() => {
+          console.log("as");
+          signOut();
+        }}
+      >
+        <div />
+      </button>
     </div>
   );
 };

@@ -10,7 +10,7 @@ import OutsideClick from "./OutsideClick";
 // import DelayModal from "./DelayModal";
 import { PlaySVG, PauseSVG, StopSVG } from "./Icons";
 
-const MainScreen = ({ update }) => {
+const MainScreen = ({ update, signOut }) => {
   const [minutes, setMinutes] = useState("00");
   const [seconds, setSeconds] = useState("00");
   const [playing, setPlaying] = useState(false);
@@ -159,7 +159,8 @@ const MainScreen = ({ update }) => {
               actions={{
                 toggleBucle: () => setBucle(!bucle),
                 setTheme: () => setTheme(!theme),
-                showDelayModal: () => setShowDelayModal(!showDelayModal)
+                showDelayModal: () => setShowDelayModal(!showDelayModal),
+                signOut: () => signOut()
               }}
             />
           </OutsideClick>

@@ -21,7 +21,7 @@
     "clean-map": "rimraf build/**/*.map",
     "deploy": "npm run build && npm run clean-map && cd build && surge -d https://bigtime.surge.sh",
     "deploy-q": "npm run build && npm run clean-map && cd build && surge -d https://qbigtime.surge.sh",
-    "deploy-sm": "npm run build && cd build && surge -d https://bigtime.surge.sh"
+    "deploy-sm": "npm run build && cd build && surge -d https://qbigtime.surge.sh"
   },
   "eslintConfig": {
     "extends": "react-app"
