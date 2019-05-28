@@ -10,6 +10,10 @@
   opacity: 0.25;
 }
 
+.btn-wide:disabled {
+  opacity: 0.5;
+}
+
 .btn:active {
   opacity: 0.5;
 }
@@ -66,6 +70,23 @@
   background-color: darkgray;
 }
 
+.btn-refresh {
+  position: relative;
+}
+
+.btn-settings.update::after,
+.btn-refresh.update::after {
+  content: ".";
+  height: 11px;
+  width: 11px;
+  top: -5px;
+  left: 48px;
+  background-color: red;
+  position: absolute;
+  border-radius: 50%;
+  color: white;
+}
+
 .repeat-disabled {
   opacity: 0.3;
 }
@@ -93,6 +114,35 @@
   color: red;
 }
 
+.login div.status-msg-container {
+  font-size: 1rem;
+  width: 70%;
+  padding: 15px;
+  margin-bottom: 10px;
+}
+
+.status-msg-container.green {
+  background-color: #019c01;
+}
+
+.status-msg-container.red {
+  background-color: red;
+}
+
+.status-msg-container.neutral {
+  background-color: white;
+  color: black;
+}
+
+.profile-pic {
+  margin: auto;
+  margin-right: 10px;
+  border-radius: 3px;
+  height: 50px;
+  width: 54px;
+  background: red;
+}
+
 @media only screen and (orientation: landscape) {
   .btn-play span {
     font-size: 2em;
@@ -112,5 +162,10 @@
   .input-audio + label {
     left: 0;
     bottom: calc(15vh + 10px);
+  }
+
+  .login input,
+  .login button {
+    width: 50%;
   }
 }

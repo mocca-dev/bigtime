@@ -5,8 +5,9 @@ import ToggleTheme from "./ToggleTheme";
 import ToggleBtn from "./ToggleBtn";
 
 const SettingsBar = ({ data, actions }) => {
-  const { theme, bucle } = data;
-  const { setTheme, toggleBucle, showDelayModal } = actions;
+  const { theme, bucle, update } = data;
+  const { setTheme, toggleBucle, showDelayModal, signOut } = actions;
+  const refreshClass = "btn btn-theme btn-refresh ";
 
   return (
     <div className="settings-bar">
@@ -22,7 +23,7 @@ const SettingsBar = ({ data, actions }) => {
         disabled={false}
       />
       <ToggleBtn
-        cClass="btn btn-theme"
+        cClass={update ? refreshClass + "update" : refreshClass}
         IconT={RefreshSVG}
         IconF={RefreshSVG}
         value={true}
@@ -30,7 +31,7 @@ const SettingsBar = ({ data, actions }) => {
           window.location.reload();
         }}
       />
-      <ToggleBtn
+      {/* <ToggleBtn
         cClass="btn btn-theme"
         IconT={RepeatSVG}
         IconF={RepeatSVG}
@@ -38,7 +39,16 @@ const SettingsBar = ({ data, actions }) => {
         toggle={() => {
           showDelayModal();
         }}
-      />
+      /> */}
+      <button
+        className="profile-pic"
+        onClick={() => {
+          console.log("as");
+          signOut();
+        }}
+      >
+        <div />
+      </button>
     </div>
   );
 };

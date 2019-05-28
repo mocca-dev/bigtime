@@ -1,9 +1,14 @@
 import React from "react";
 import { SettingsSVG } from "./Icons";
 
-const SettingsBtn = ({ onClick }) => {
+const SettingsBtn = ({ onClick, update }) => {
+  const classStr = "btn btn-settings ";
+
   return (
-    <button className="btn btn-settings" onClick={() => onClick()}>
+    <button
+      className={update ? classStr + "update" : classStr}
+      onClick={() => onClick()}
+    >
       <SettingsSVG />
     </button>
   );

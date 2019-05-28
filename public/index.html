@@ -149,13 +149,38 @@
         filter: invert(1);
       }
 
-      .btn-theme {
+      .btn-theme,
+      .btn-wide {
         border: none;
         background: none;
         padding: 15px;
         background-color: var(--primaryFg);
         fill: var(--primaryBg);
         height: 50px;
+      }
+
+      .btn-wide {
+        width: 70%;
+        font-size: 1rem;
+      }
+
+      .btn-wide-body-w-icon {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin: 0;
+        height: 20px;
+      }
+
+      .btn-wide-body-w-icon svg {
+        margin: 0;
+      }
+
+      .btn-google {
+        margin-top: 60px;
+        background-color: #dd4b39;
+        color: white;
+        fill: white;
       }
 
       .btn-theme svg {
@@ -171,6 +196,7 @@
       }
 
       .btn-settings {
+        position: relative;
         fill: var(--primaryBg);
         background-color: var(--primaryFg);
       }
@@ -208,6 +234,40 @@
         margin-bottom: 50px;
         text-align: center;
         font-size: 36vw;
+      }
+
+      .login {
+        display: flex;
+        height: 100vh;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .login input,
+      .login button {
+        margin-bottom: 5px;
+      }
+
+      .login img {
+        margin-bottom: 30px;
+      }
+
+      .login div {
+        margin-bottom: 30px;
+        font-size: 1.5rem;
+      }
+
+      .login input {
+        width: 70%;
+        height: 50px;
+        background: none;
+        border: none;
+        color: white;
+        background-color: rgba(255, 255, 255, 0.15);
+        padding: 15px;
+        border-radius: 3px;
+        font-size: 1rem;
       }
     </style>
   </head>
