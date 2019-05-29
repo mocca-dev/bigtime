@@ -1,12 +1,12 @@
 import React from "react";
 
-import { RepeatSVG, RepeatSVGDisabled, RefreshSVG } from "./Icons";
+import { RepeatSVG, RepeatSVGDisabled, RefreshSVG, LogOutSVG } from "./Icons";
 import ToggleTheme from "./ToggleTheme";
 import ToggleBtn from "./ToggleBtn";
 
 const SettingsBar = ({ data, actions }) => {
-  const { theme, bucle, update } = data;
-  const { setTheme, toggleBucle, showDelayModal, signOut } = actions;
+  const { theme, bucle, update, profilePic } = data;
+  const { setTheme, toggleBucle, signOut } = actions;
   const refreshClass = "btn btn-theme btn-refresh ";
 
   return (
@@ -41,13 +41,12 @@ const SettingsBar = ({ data, actions }) => {
         }}
       /> */}
       <button
-        className="profile-pic"
+        className="profile-pic btn-theme"
         onClick={() => {
-          console.log("as");
           signOut();
         }}
       >
-        <div />
+        {profilePic ? <div>a</div> : <LogOutSVG />}
       </button>
     </div>
   );

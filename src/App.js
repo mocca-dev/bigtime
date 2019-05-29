@@ -11,7 +11,6 @@ class App extends Component {
   constructor(props) {
     super();
     this.state = {
-      authenticated: false,
       update: false
     };
   }
@@ -22,7 +21,6 @@ class App extends Component {
 
   render() {
     const { user, signInWithGoogle, appServiceWorker } = this.props;
-    console.log(user);
     return (
       <div className="App">
         <UpdateCheck
@@ -33,16 +31,12 @@ class App extends Component {
           <AuthenticatedRoute
             exact
             path="/"
-            authenticated={this.state.authenticated}
+            user={user}
             component={() => (
               <MainScreen
                 update={this.state.update}
-                signOut={() => {
-                  console.log("hola");
-                  this.setState({ authenticated: false }, () =>
-                    firebaseAppAuth.signOut()
-                  );
-                }}
+                profilePic={user && user.photoURL}
+                signOut={() => firebaseAppAuth.signOut()}
               />
             )}
           />
@@ -53,9 +47,6 @@ class App extends Component {
               <LoginScreen
                 props={props}
                 signInWithGoogle={() => signInWithGoogle()}
-                setAuthenticated={() => {
-                  this.setState({ authenticated: true });
-                }}
                 user={user}
               />
             )}

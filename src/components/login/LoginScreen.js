@@ -4,7 +4,7 @@ import { firebaseAppAuth } from "./../../firebase/firebaseConfig";
 import { GoogleSVG } from "./../Icons";
 import StatusMsg from "./StatusMsg";
 
-const LoginScreen = ({ signInWithGoogle, setAuthenticated, props, user }) => {
+const LoginScreen = ({ signInWithGoogle, props, user }) => {
   const [sending, setSending] = useState(false);
   const [backFromEmail, setBackFromEmail] = useState(false);
   const [statusMsg, setStatusMsg] = useState({
@@ -14,12 +14,15 @@ const LoginScreen = ({ signInWithGoogle, setAuthenticated, props, user }) => {
   });
 
   useEffect(() => {
-    // if (user) props.history.push("/");
-    const params = new URLSearchParams(props.location.search);
-    if (params.get("apiKey")) {
-      fromEmail();
+    if (user) {
+      props.history.push("/");
+    } else {
+      const params = new URLSearchParams(props.location.search);
+      if (params.get("apiKey")) {
+        fromEmail();
+      }
     }
-  });
+  }, []);
 
   const singingWithPasswordless = email => {
     setSending(true);
@@ -88,7 +91,7 @@ const LoginScreen = ({ signInWithGoogle, setAuthenticated, props, user }) => {
           // result.additionalUserInfo.profile == null
           // You can check if the user is new or existing:
           // result.additionalUserInfo.isNewUser
-          setAuthenticated();
+          props.history.push("/");
         })
         .catch(function(error) {
           // Some error occurred, you can inspect the code: error.code

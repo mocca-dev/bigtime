@@ -10,7 +10,7 @@ import OutsideClick from "./OutsideClick";
 // import DelayModal from "./DelayModal";
 import { PlaySVG, PauseSVG, StopSVG } from "./Icons";
 
-const MainScreen = ({ update, signOut }) => {
+const MainScreen = ({ update, signOut, profilePic }) => {
   const [minutes, setMinutes] = useState("00");
   const [seconds, setSeconds] = useState("00");
   const [playing, setPlaying] = useState(false);
@@ -155,7 +155,12 @@ const MainScreen = ({ update, signOut }) => {
         {showSettings && (
           <OutsideClick action={() => setShowSettings(false)}>
             <SettingsBar
-              data={{ bucle: bucle, theme: theme, update: update }}
+              data={{
+                bucle: bucle,
+                theme: theme,
+                update: update,
+                profilePic: profilePic
+              }}
               actions={{
                 toggleBucle: () => setBucle(!bucle),
                 setTheme: () => setTheme(!theme),

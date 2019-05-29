@@ -169,6 +169,25 @@ const GoogleSVG = () => (
   </svg>
 );
 
+const LogOutSVG = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 3008 4025"
+    shapeRendering="geometricPrecision"
+    textRendering="geometricPrecision"
+    imageRendering="optimizeQuality"
+    fillRule="evenodd"
+    clipRule="evenodd"
+  >
+    <path
+      d="M2678 2117H1355c-57 0-103-47-103-104 0-58 46-104 103-104h1323l-432-495c-38-43-34-108 9-146 42-38 107-34 145 9l583 668c35 40 34 99 0 138l-583 667c-38 43-102 47-145 9-42-38-46-104-9-146l432-495zm-357 1147c0-57 47-104 104-104s104 47 104 104v467c0 81-33 155-87 208-53 53-127 87-208 87H295c-81 0-155-33-208-87-53-53-87-127-87-208V296c0-81 33-155 87-208C140 35 214 1 295 1h1939c81 0 155 33 208 87 53 53 87 127 87 208v467c0 57-47 104-104 104s-104-47-104-104V296c0-24-10-45-26-61s-37-26-61-26H295c-24 0-45 10-61 26s-26 37-26 61v3435c0 24 10 45 26 61s38 26 61 26h1939c24 0 45-10 61-26s26-38 26-61v-467z"
+      fillRule="nonzero"
+    />
+  </svg>
+);
+
 export {
   PlaySVG,
   PauseSVG,
@@ -181,5 +200,6 @@ export {
   CloseSVG,
   CheckSVG,
   RefreshSVG,
-  GoogleSVG
+  GoogleSVG,
+  LogOutSVG
 };
