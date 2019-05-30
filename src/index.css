@@ -142,6 +142,22 @@
   width: 54px;
 }
 
+div.loading-container {
+  display: grid;
+  grid-template-columns: 25% 50%;
+  margin: 0;
+  align-items: center;
+}
+
+.loading-container svg {
+  justify-self: end;
+}
+
+.loading-container div {
+  font-size: 1rem;
+  margin: 0;
+}
+
 @media only screen and (orientation: landscape) {
   .btn-play span {
     font-size: 2em;

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { LoadingSVG } from "./../Icons";
 
 const PasswordelessSigning = ({ sendEmail, sending }) => {
   const [email, setEmail] = useState("");
@@ -15,7 +16,14 @@ const PasswordelessSigning = ({ sendEmail, sending }) => {
         onClick={() => sendEmail(email)}
         disabled={!email.length || sending}
       >
-        {sending ? "ENVIANDO" : "ENVIAR"}
+        {sending ? (
+          <div className="loading-container">
+            <LoadingSVG />
+            <div>ENVIANDO</div>
+          </div>
+        ) : (
+          "ENVIAR"
+        )}
       </button>
     </React.Fragment>
   );

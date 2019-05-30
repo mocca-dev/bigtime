@@ -56,6 +56,7 @@ const LoginScreen = ({ signInWithGoogle, props, user }) => {
           color: "red",
           visibility: true
         });
+        setSending(false);
       });
   };
 

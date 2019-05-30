@@ -10,7 +10,7 @@ const AuthenticatedRoute = ({
     <Route
       {...rest}
       render={props =>
-        !user ? (
+        user ? (
           <Component {...props} {...rest} />
         ) : (
           <Redirect
