@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PasswordlessSigning from "./PasswordlessSigning";
 import { firebaseAppAuth } from "./../../firebase/firebaseConfig";
-import { GoogleSVG } from "./../Icons";
+import { GoogleSVG, LogoSVG } from "./../Icons";
 import StatusMsg from "./StatusMsg";
 
 const LoginScreen = ({ signInWithGoogle, props, user }) => {
@@ -103,7 +103,7 @@ const LoginScreen = ({ signInWithGoogle, props, user }) => {
 
   return (
     <div className="login">
-      <img src="./icons/icon-512x512.png" height="100px" width="100px" alt="" />
+      <LogoSVG />
       {!backFromEmail ? (
         <React.Fragment>
           <div>Bienvenido</div>
