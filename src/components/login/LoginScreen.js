@@ -92,7 +92,14 @@ const LoginScreen = ({ signInWithGoogle, props, user }) => {
           // result.additionalUserInfo.profile == null
           // You can check if the user is new or existing:
           // result.additionalUserInfo.isNewUser
-          props.history.push("/");
+          setStatusMsg({
+            content: "Datos correctos, bienvenido!!",
+            color: "green",
+            visibility: true
+          });
+          if (user) {
+            props.history.push("/");
+          }
         })
         .catch(function(error) {
           // Some error occurred, you can inspect the code: error.code

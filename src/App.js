@@ -32,7 +32,7 @@ class App extends Component {
             exact
             path="/"
             user={user}
-            component={() => (
+            Component={() => (
               <MainScreen
                 update={this.state.update}
                 profilePic={user && user.photoURL}
