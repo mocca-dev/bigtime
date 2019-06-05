@@ -127,7 +127,8 @@ const MainScreen = ({ update, signOut, profilePic }) => {
 
   const signOutOK = () => {
     return new Promise(function(resolve, reject) {
-      resolve(signOut());
+      signOut();
+      resolve(true);
     });
   };
 

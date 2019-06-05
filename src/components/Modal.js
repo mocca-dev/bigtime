@@ -17,7 +17,7 @@ const Modal = ({ hideModal, okAction, cancelAction, title, bodyTxt }) => (
       </button>
       <button
         onClick={() => {
-          okAction().then(() => hideModal());
+          okAction().then(hasHide => hasHide && hideModal());
         }}
       >
         <CheckSVG />

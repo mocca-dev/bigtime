@@ -20,7 +20,7 @@ class App extends Component {
   }
 
   render() {
-    const { user, signInWithGoogle, appServiceWorker } = this.props;
+    const { user, signInWithGoogle, appServiceWorker, signOut } = this.props;
     return (
       <div className="App">
         <UpdateCheck
@@ -36,7 +36,7 @@ class App extends Component {
               <MainScreen
                 update={this.state.update}
                 profilePic={user && user.photoURL}
-                signOut={() => firebaseAppAuth.signOut()}
+                signOut={() => signOut()}
               />
             )}
           />
