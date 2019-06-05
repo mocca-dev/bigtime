@@ -1,14 +1,15 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, Fragment } from "react";
 import TimeDisplay from "./TimeDisplay";
 import ProgressBar from "./ProgressBar";
 import AudioUpload from "./AudioUpload";
 import ToggleBtn from "./ToggleBtn";
 import SettingsBtn from "./SettingsBtn";
 import SettingsBar from "./SettingsBar";
-// import DelayDisplay from "./DelayDisplay";
 import OutsideClick from "./OutsideClick";
-// import DelayModal from "./DelayModal";
 import { PlaySVG, PauseSVG, StopSVG } from "./Icons";
+import Modal from "./Modal";
+// import DelayDisplay from "./DelayDisplay";
+// import DelayModal from "./DelayModal";
 
 const MainScreen = ({ update, signOut, profilePic }) => {
   const [minutes, setMinutes] = useState("00");
@@ -21,6 +22,7 @@ const MainScreen = ({ update, signOut, profilePic }) => {
   const [progressWidth, setProgressWidth] = useState(0);
   const [showDelayModal, setShowDelayModal] = useState(false);
   const [delay, setDelay] = useState(0);
+  const [showSignOutModal, setShowSignOutModal] = useState(false);
 
   const playerRef = useRef(null);
   const audioInputRef = useRef(null);
@@ -123,8 +125,14 @@ const MainScreen = ({ update, signOut, profilePic }) => {
     }
   };
 
+  const signOutOK = () => {
+    return new Promise(function(resolve, reject) {
+      resolve(signOut());
+    });
+  };
+
   return (
-    <React.Fragment>
+    <Fragment>
       {/* {showDelayModal && (
         <DelayModal
           delay={delay}
@@ -132,6 +140,15 @@ const MainScreen = ({ update, signOut, profilePic }) => {
           setShowDelayModal={setShowDelayModal}
         />
       )} */}
+      {showSignOutModal && (
+        <Modal
+          title="Salir"
+          bodyTxt="Está seguro que desea cerrar sesión?"
+          hideModal={() => setShowSignOutModal(false)}
+          okAction={() => signOutOK()}
+          cancelAction={() => new Promise((resolve, reject) => resolve(null))}
+        />
+      )}
       <ProgressBar
         progressWidth={progressWidth}
         onMouseDown={e => songName && convertOffsetXToCurrentTime(e)}
@@ -165,7 +182,7 @@ const MainScreen = ({ update, signOut, profilePic }) => {
                 toggleBucle: () => setBucle(!bucle),
                 setTheme: () => setTheme(!theme),
                 showDelayModal: () => setShowDelayModal(!showDelayModal),
-                signOut: () => signOut()
+                signOut: () => setShowSignOutModal(true)
               }}
             />
           </OutsideClick>
@@ -195,7 +212,7 @@ const MainScreen = ({ update, signOut, profilePic }) => {
           />
         </div>
       </div>
-    </React.Fragment>
+    </Fragment>
   );
 };
 

@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import { LoadingSVG } from "./../Icons";
 
 const PasswordelessSigning = ({ sendEmail, sending }) => {
   const [email, setEmail] = useState("");
   return (
-    <React.Fragment>
+    <Fragment>
       <input
         type="email"
         placeholder="CORREO ELECTRONICO"
@@ -25,7 +25,7 @@ const PasswordelessSigning = ({ sendEmail, sending }) => {
           "ENVIAR"
         )}
       </button>
-    </React.Fragment>
+    </Fragment>
   );
 };
 

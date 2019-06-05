@@ -41,12 +41,18 @@ const SettingsBar = ({ data, actions }) => {
         }}
       /> */}
       <button
-        className="profile-pic btn-theme"
+        className={
+          profilePic ? "profile-pic btn-theme" : "profile-pic-btn btn-theme"
+        }
         onClick={() => {
           signOut();
         }}
       >
-        {profilePic ? <div>a</div> : <LogOutSVG />}
+        {profilePic ? (
+          <img src={profilePic} alt="profile" height="50px" />
+        ) : (
+          <LogOutSVG />
+        )}
       </button>
     </div>
   );

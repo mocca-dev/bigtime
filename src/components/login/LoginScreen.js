@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import PasswordlessSigning from "./PasswordlessSigning";
 import { firebaseAppAuth } from "./../../firebase/firebaseConfig";
 import { GoogleSVG, LogoSVG } from "./../Icons";
@@ -112,7 +112,7 @@ const LoginScreen = ({ signInWithGoogle, props, user }) => {
     <div className="login">
       <LogoSVG />
       {!backFromEmail ? (
-        <React.Fragment>
+        <Fragment>
           <div>Bienvenido</div>
           {statusMsg.visibility && (
             <StatusMsg content={statusMsg.content} color={statusMsg.color} />
@@ -130,12 +130,12 @@ const LoginScreen = ({ signInWithGoogle, props, user }) => {
               <span>INGRESAR CON GOOGLE</span>
             </span>
           </button>
-        </React.Fragment>
+        </Fragment>
       ) : (
-        <React.Fragment>
+        <Fragment>
           <div>Gracias por volver</div>
           <StatusMsg content={statusMsg.content} color={statusMsg.color} />
-        </React.Fragment>
+        </Fragment>
       )}
     </div>
   );

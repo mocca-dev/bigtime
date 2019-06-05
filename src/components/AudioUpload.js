@@ -1,8 +1,8 @@
-import React from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 
 const AudioUpload = React.forwardRef(({ labelTxt }, ref) => (
-  <React.Fragment>
+  <Fragment>
     <input
       className="input-audio"
       type="file"
@@ -14,7 +14,7 @@ const AudioUpload = React.forwardRef(({ labelTxt }, ref) => (
     <label htmlFor="audio-file">
       {labelTxt ? labelTxt : "Seleccionar tema..."}
     </label>
-  </React.Fragment>
+  </Fragment>
 ));
 
 AudioUpload.propTypes = {

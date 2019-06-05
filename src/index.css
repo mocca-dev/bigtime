@@ -18,6 +18,10 @@
   opacity: 0.5;
 }
 
+.close-svg-icon {
+  transform: rotate(45deg);
+}
+
 .toaster-container {
   z-index: 10;
   display: flex;
@@ -94,11 +98,12 @@
 .modal-container {
   z-index: 10;
   position: fixed;
-  right: calc(50vw - 28px);
-  top: calc(50vh - 25px);
+  left: 50%;
+  transform: translateX(-50%);
+  top: calc(50vh - 75px);
   background: var(--primaryFg);
   color: var(--primaryBg);
-  padding: 15px;
+  padding: 0 15px;
 }
 
 .modal-container button svg {
@@ -108,6 +113,11 @@
 .modal-container .bottom-bar {
   display: flex;
   justify-content: space-between;
+  margin-top: 10px;
+}
+
+.modal-container .bottom-bar button {
+  padding: 10px 20px;
 }
 
 .delay-display {
@@ -134,12 +144,29 @@
   color: black;
 }
 
-.profile-pic {
+.profile-pic-btn {
+  border: none;
+  background: none;
+  padding: 15px;
+  background-color: var(--primaryFg);
   margin: auto;
   margin-right: 10px;
   border-radius: 3px;
   height: 50px;
   width: 54px;
+}
+
+.profile-pic {
+  border: none;
+  background: none;
+  margin: auto;
+  padding: 0;
+  margin-right: 10px;
+  border-radius: 3px;
+}
+
+.profile-pic img {
+  border-radius: 3px;
 }
 
 div.loading-container {

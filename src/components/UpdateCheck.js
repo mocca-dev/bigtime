@@ -7,7 +7,7 @@ const UpdateCheck = ({ appServiceWorker, setUpdate }) => {
   useEffect(() => {
     appServiceWorker.onUpdateFound(() => {
       setShow(true);
-      setUpdate(true);
+      // setUpdate(true);
     });
   });
 
