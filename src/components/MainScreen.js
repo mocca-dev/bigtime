@@ -177,7 +177,7 @@ const MainScreen = ({ update, signOut, profilePic }) => {
                 bucle: bucle,
                 theme: theme,
                 update: update,
-                profilePic: profilePic
+                profilePic: null
               }}
               actions={{
                 toggleBucle: () => setBucle(!bucle),
