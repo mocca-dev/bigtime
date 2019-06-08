@@ -8,6 +8,7 @@ import SettingsBar from "./SettingsBar";
 import OutsideClick from "./OutsideClick";
 import { PlaySVG, PauseSVG, StopSVG } from "./Icons";
 import Modal from "./Modal";
+import withAuthentication from "./withAuthentication";
 // import DelayDisplay from "./DelayDisplay";
 // import DelayModal from "./DelayModal";
 
@@ -217,4 +218,4 @@ const MainScreen = ({ update, signOut, profilePic }) => {
   );
 };
 
-export default MainScreen;
+export default withAuthentication(MainScreen);

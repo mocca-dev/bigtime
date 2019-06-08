@@ -4,8 +4,8 @@ import withFirebaseAuth from "react-with-firebase-auth";
 import { firebaseAppAuth, providers } from "./firebase/firebaseConfig";
 import LoginScreen from "./components/login/LoginScreen";
 import MainScreen from "./components/MainScreen";
-import AuthenticatedRoute from "./components/AuthtenticatedRoute";
 import UpdateCheck from "./components/UpdateCheck";
+import InactiveUserScreen from "./components/InactiveUserScreen";
 
 class App extends Component {
   constructor(props) {
@@ -20,7 +20,7 @@ class App extends Component {
   }
 
   render() {
-    const { user, signInWithGoogle, appServiceWorker, signOut } = this.props;
+    const { signInWithGoogle, appServiceWorker, signOut } = this.props;
     return (
       <div className="App">
         <UpdateCheck
@@ -28,14 +28,14 @@ class App extends Component {
           setUpdate={() => this.setState({ update: true })}
         />
         <Router>
-          <AuthenticatedRoute
+          <Route
             exact
             path="/"
-            user={user}
-            Component={() => (
+            component={() => (
               <MainScreen
                 update={this.state.update}
-                profilePic={user && user.photoURL}
+                // profilePic={user && user.photoURL}
+                profilePic={true}
                 signOut={() => signOut()}
               />
             )}
@@ -47,9 +47,13 @@ class App extends Component {
               <LoginScreen
                 props={props}
                 signInWithGoogle={() => signInWithGoogle()}
-                user={user}
               />
             )}
+          />
+          <Route
+            exact
+            path="/inactive"
+            component={() => <InactiveUserScreen signOut={() => signOut()} />}
           />
         </Router>
       </div>

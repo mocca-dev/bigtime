@@ -1,10 +1,11 @@
 import React, { useEffect, useState, Fragment } from "react";
+import withAuthentication from "./../withAuthentication";
 import PasswordlessSigning from "./PasswordlessSigning";
 import { firebaseAppAuth } from "./../../firebase/firebaseConfig";
 import { GoogleSVG, LogoSVG } from "./../Icons";
 import StatusMsg from "./StatusMsg";
 
-const LoginScreen = ({ signInWithGoogle, props, user }) => {
+const LoginScreen = ({ signInWithGoogle, props }) => {
   const [sending, setSending] = useState(false);
   const [backFromEmail, setBackFromEmail] = useState(false);
   const [statusMsg, setStatusMsg] = useState({
@@ -14,13 +15,9 @@ const LoginScreen = ({ signInWithGoogle, props, user }) => {
   });
 
   useEffect(() => {
-    if (user) {
-      props.history.push("/");
-    } else {
-      const params = new URLSearchParams(props.location.search);
-      if (params.get("apiKey")) {
-        fromEmail();
-      }
+    const params = new URLSearchParams(props.location.search);
+    if (params.get("apiKey")) {
+      fromEmail();
     }
   }, []);
 
@@ -68,7 +65,8 @@ const LoginScreen = ({ signInWithGoogle, props, user }) => {
       visibility: true
     });
     // Confirm the link is a sign-in with email link.
-    if (firebaseAppAuth.isSignInWithEmailLink(window.location.href)) {
+    const fullUrl = window.location.href + props.location.search;
+    if (firebaseAppAuth.isSignInWithEmailLink(fullUrl)) {
       // Additional state parameters can also be passed via URL.
       // This can be used to continue the user's intended action before triggering
       // the sign-in operation.
@@ -83,7 +81,7 @@ const LoginScreen = ({ signInWithGoogle, props, user }) => {
       // The client SDK will parse the code from the link for you.
 
       firebaseAppAuth
-        .signInWithEmailLink(email, window.location.href)
+        .signInWithEmailLink(email, fullUrl)
         .then(function(result) {
           // Clear email from storage.
           window.localStorage.removeItem("emailForSignIn");
@@ -97,9 +95,7 @@ const LoginScreen = ({ signInWithGoogle, props, user }) => {
             color: "green",
             visibility: true
           });
-          if (user) {
-            props.history.push("/");
-          }
+          props.history.push("/");
         })
         .catch(function(error) {
           // Some error occurred, you can inspect the code: error.code
@@ -141,4 +137,4 @@ const LoginScreen = ({ signInWithGoogle, props, user }) => {
   );
 };
 
-export default LoginScreen;
+export default withAuthentication(LoginScreen);
