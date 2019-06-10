@@ -14,15 +14,12 @@ const UpdateCheck = ({ appServiceWorker, setUpdate }) => {
   return (
     <Fragment>
       {show && (
-        <Fragment>
-          <div className="overlay" />
-          <Toaster
-            content="Nueva actualizacion!"
-            close={() => setShow(false)}
-            ok={() => window.location.reload()}
-            cClass="update-check"
-          />
-        </Fragment>
+        <Toaster
+          content="Nueva actualizacion!"
+          close={() => setShow(false)}
+          ok={() => window.location.reload()}
+          cClass="update-check"
+        />
       )}
     </Fragment>
   );

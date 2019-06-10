@@ -1,29 +1,32 @@
-import React from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 
 import { CheckSVG, CloseSVG } from "./Icons";
 
 const Modal = ({ hideModal, okAction, cancelAction, title, bodyTxt }) => (
-  <div className="modal-container">
-    <h3>{title}</h3>
-    <span>{bodyTxt}</span>
-    <div className="bottom-bar">
-      <button
-        onClick={() => {
-          cancelAction().then(() => hideModal());
-        }}
-      >
-        <CloseSVG />
-      </button>
-      <button
-        onClick={() => {
-          okAction().then(hasHide => hasHide && hideModal());
-        }}
-      >
-        <CheckSVG />
-      </button>
+  <Fragment>
+    <div className="overlay" />
+    <div className="modal-container">
+      <h3>{title}</h3>
+      <span>{bodyTxt}</span>
+      <div className="bottom-bar">
+        <button
+          onClick={() => {
+            cancelAction().then(() => hideModal());
+          }}
+        >
+          <CloseSVG />
+        </button>
+        <button
+          onClick={() => {
+            okAction().then(hasHide => hasHide && hideModal());
+          }}
+        >
+          <CheckSVG />
+        </button>
+      </div>
     </div>
-  </div>
+  </Fragment>
 );
 
 export default Modal;
