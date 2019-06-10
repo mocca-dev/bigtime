@@ -1,4 +1,5 @@
 import React, { useState, Fragment } from "react";
+import PropTypes from "prop-types";
 import { LoadingSVG } from "./../Icons";
 
 const PasswordelessSigning = ({ sendEmail, sending }) => {
@@ -30,3 +31,8 @@ const PasswordelessSigning = ({ sendEmail, sending }) => {
 };
 
 export default PasswordelessSigning;
+
+PasswordelessSigning.propTypes = {
+  sendEmail: PropTypes.func.isRequired,
+  sending: PropTypes.bool.isRequired
+};

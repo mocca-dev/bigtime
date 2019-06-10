@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, Fragment } from "react";
+import PropTypes from "prop-types";
 import TimeDisplay from "./TimeDisplay";
 import ProgressBar from "./ProgressBar";
 import AudioUpload from "./AudioUpload";
@@ -219,3 +220,9 @@ const MainScreen = ({ update, signOut, profilePic }) => {
 };
 
 export default withAuthentication(MainScreen);
+
+MainScreen.propTypes = {
+  update: PropTypes.bool.isRequired,
+  signOut: PropTypes.func.isRequired,
+  profilePic: PropTypes.string.isRequired
+};

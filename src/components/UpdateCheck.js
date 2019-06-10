@@ -1,4 +1,5 @@
 import React, { useState, useEffect, Fragment } from "react";
+import PropTypes from "prop-types";
 import Toaster from "./Toaster";
 
 const UpdateCheck = ({ appServiceWorker, setUpdate }) => {
@@ -26,3 +27,8 @@ const UpdateCheck = ({ appServiceWorker, setUpdate }) => {
 };
 
 export default UpdateCheck;
+
+UpdateCheck.propTypes = {
+  appServiceWorker: PropTypes.object.isRequired,
+  setUpdate: PropTypes.func.isRequired
+};

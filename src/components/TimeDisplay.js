@@ -8,9 +8,9 @@ const TimeDisplay = ({ minutes, seconds }) => (
   </div>
 );
 
+export default TimeDisplay;
+
 TimeDisplay.propTypes = {
   minutes: PropTypes.string.isRequired,
   seconds: PropTypes.string.isRequired
 };
-
-export default TimeDisplay;

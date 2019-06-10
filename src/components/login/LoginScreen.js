@@ -1,4 +1,5 @@
 import React, { useEffect, useState, Fragment } from "react";
+import PropTypes from "prop-types";
 import withAuthentication from "./../withAuthentication";
 import PasswordlessSigning from "./PasswordlessSigning";
 import { firebaseAppAuth } from "./../../firebase/firebaseConfig";
@@ -138,3 +139,8 @@ const LoginScreen = ({ signInWithGoogle, props }) => {
 };
 
 export default withAuthentication(LoginScreen);
+
+LoginScreen.propTypes = {
+  signInWithGoogle: PropTypes.func.isRequired,
+  props: PropTypes.object.isRequired
+};

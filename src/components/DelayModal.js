@@ -1,7 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { CheckSVG } from "./Icons";
 
-const DelayModal = ({ setDelay, delay, setShowDelayModal }) => {
+const DelayModal = ({ setDelay, setShowDelayModal, delay }) => {
   return (
     <div className="modal-container">
       <h4>Delay de inicio</h4>
@@ -36,3 +37,9 @@ const DelayModal = ({ setDelay, delay, setShowDelayModal }) => {
 };
 
 export default DelayModal;
+
+DelayModal.propTypes = {
+  setDelay: PropTypes.func.isRequired,
+  setShowDelayModal: PropTypes.func.isRequired,
+  delay: PropTypes.string.isRequired
+};

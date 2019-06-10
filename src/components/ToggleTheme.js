@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import PropTypes from "prop-types";
 import ToggleBtn from "./ToggleBtn";
 import { MoonSVG, SunSVG } from "./Icons";
 
@@ -23,3 +24,8 @@ const ToggleTheme = ({ theme, setTheme }) => {
 };
 
 export default ToggleTheme;
+
+ToggleTheme.propTypes = {
+  theme: PropTypes.string.isRequired,
+  setTheme: PropTypes.func.isRequired
+};

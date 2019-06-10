@@ -9,6 +9,8 @@ const ToggleBtn = ({ toggle, value, cClass, IconT, IconF, disabled }) => {
   );
 };
 
+export default ToggleBtn;
+
 ToggleBtn.propTypes = {
   toggle: PropTypes.func.isRequired,
   value: PropTypes.bool.isRequired,
@@ -17,5 +19,3 @@ ToggleBtn.propTypes = {
   IconF: PropTypes.func.isRequired,
   disabled: PropTypes.bool
 };
-
-export default ToggleBtn;

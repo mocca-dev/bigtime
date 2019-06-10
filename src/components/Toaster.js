@@ -19,10 +19,10 @@ const Toaster = ({ content, close, ok }) => (
   </Fragment>
 );
 
+export default Toaster;
+
 Toaster.propTypes = {
   content: PropTypes.string.isRequired,
   close: PropTypes.func.isRequired,
   ok: PropTypes.func.isRequired
 };
-
-export default Toaster;

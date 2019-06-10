@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import { RepeatSVG, RepeatSVGDisabled, RefreshSVG, LogOutSVG } from "./Icons";
 import ToggleTheme from "./ToggleTheme";
@@ -59,3 +60,8 @@ const SettingsBar = ({ data, actions }) => {
 };
 
 export default SettingsBar;
+
+SettingsBar.propTypes = {
+  data: PropTypes.object.isRequired,
+  actions: PropTypes.object.isRequired
+};

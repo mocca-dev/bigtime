@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { SettingsSVG } from "./Icons";
 
 const SettingsBtn = ({ onClick, update }) => {
@@ -15,3 +16,8 @@ const SettingsBtn = ({ onClick, update }) => {
 };
 
 export default SettingsBtn;
+
+SettingsBtn.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  update: PropTypes.bool.isRequired
+};
