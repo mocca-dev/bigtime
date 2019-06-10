@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { withRouter } from "react-router-dom";
-import { firebaseAppAuth, firestore } from "../firebase/firebaseConfig";
+import { firebaseAppAuth, firestore } from "../firebase/firebase";
 
 const withAuthentication = Component => {
   const WithAuthentication = props => {

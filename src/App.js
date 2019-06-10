@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import withFirebaseAuth from "react-with-firebase-auth";
-import { firebaseAppAuth, providers } from "./firebase/firebaseConfig";
+import { firebaseAppAuth, providers } from "./firebase/firebase";
 import LoginScreen from "./components/login/LoginScreen";
 import MainScreen from "./components/MainScreen";
 import UpdateCheck from "./components/UpdateCheck";

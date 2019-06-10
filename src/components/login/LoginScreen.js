@@ -2,7 +2,7 @@ import React, { useEffect, useState, Fragment } from "react";
 import PropTypes from "prop-types";
 import withAuthentication from "./../withAuthentication";
 import PasswordlessSigning from "./PasswordlessSigning";
-import { firebaseAppAuth } from "./../../firebase/firebaseConfig";
+import { firebaseAppAuth } from "./../../firebase/firebase";
 import { GoogleSVG, LogoSVG } from "./../Icons";
 import StatusMsg from "./StatusMsg";
 
