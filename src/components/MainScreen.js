@@ -42,6 +42,11 @@ const MainScreen = ({ update, signOut, profilePic }) => {
     setProgressWidth(convertCurrentTimeToWidth());
   });
 
+  useEffect(() => {
+    setBucle(localStorage.getItem("bucle") === "true");
+    setTheme(localStorage.getItem("theme") === "true");
+  }, []);
+
   const play = () => {
     if (delay) {
       while (delay > 0) {
@@ -134,6 +139,10 @@ const MainScreen = ({ update, signOut, profilePic }) => {
     });
   };
 
+  const persistSettings = (name, value) => {
+    localStorage.setItem(name, value);
+  };
+
   return (
     <Fragment>
       {/* {showDelayModal && (
@@ -182,8 +191,14 @@ const MainScreen = ({ update, signOut, profilePic }) => {
                 profilePic: null
               }}
               actions={{
-                toggleBucle: () => setBucle(!bucle),
-                setTheme: () => setTheme(!theme),
+                toggleBucle: () => {
+                  setBucle(!bucle);
+                  persistSettings("bucle", !bucle);
+                },
+                setTheme: () => {
+                  setTheme(!theme);
+                  persistSettings("theme", !theme);
+                },
                 showDelayModal: () => setShowDelayModal(!showDelayModal),
                 signOut: () => setShowSignOutModal(true)
               }}

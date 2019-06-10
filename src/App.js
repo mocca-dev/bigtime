@@ -15,8 +15,8 @@ class App extends Component {
     };
   }
   componentDidMount() {
-    if (!document.documentElement.getAttribute("data-theme"))
-      document.documentElement.setAttribute("data-theme", "dark");
+    const theme = localStorage.getItem("theme") === "true" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", theme);
   }
 
   render() {
@@ -35,7 +35,7 @@ class App extends Component {
               <MainScreen
                 update={this.state.update}
                 // profilePic={user && user.photoURL}
-                profilePic={true}
+                profilePic={""}
                 signOut={() => signOut()}
               />
             )}
