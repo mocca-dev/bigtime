@@ -120,6 +120,17 @@
   padding: 10px 20px;
 }
 
+.overlay {
+  z-index: 9;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--primaryBg);
+  opacity: 0.8;
+}
+
 .delay-display {
   color: red;
 }
