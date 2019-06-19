@@ -7,7 +7,12 @@ import Modal from "./Modal";
 
 const InactiveUserScreen = ({ user, signOut, props }) => {
   const [showSignOutModal, setShowSignOutModal] = useState(false);
-  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [paymentModalContent, setPaymentModalContent] = useState({
+    title: "",
+    bodyTxt: "",
+    status: ""
+  });
 
   const signOutOK = () => {
     return new Promise(function(resolve, reject) {
@@ -28,10 +33,11 @@ const InactiveUserScreen = ({ user, signOut, props }) => {
           cancelAction={() => new Promise((resolve, reject) => resolve(null))}
         />
       )}
-      {showSuccessModal && (
+      {showPaymentModal && (
         <Modal
-          title="Pago Verificado"
-          bodyTxt="El pago se efectuó correctamente!!"
+          title={paymentModalContent.title}
+          bodyTxt={paymentModalContent.bodyTxt}
+          status={paymentModalContent.status}
         />
       )}
       <LogoSVG />
@@ -43,7 +49,8 @@ const InactiveUserScreen = ({ user, signOut, props }) => {
       {/* <button className="btn btn-wide">REENVIAR CUPON DE PAGO</button> */}
       <PayPalBtn
         user={user}
-        setModalVisibility={flag => setShowSuccessModal(flag)}
+        setModalVisibility={flag => setShowPaymentModal(flag)}
+        setModalContent={content => setPaymentModalContent(content)}
         history={props.history}
       />
       <button

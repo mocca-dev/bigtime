@@ -101,9 +101,23 @@
   left: 50%;
   transform: translateX(-50%);
   top: calc(50vh - 75px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background: var(--primaryFg);
   color: var(--primaryBg);
-  padding: 0 15px;
+  padding: 15px;
+}
+
+.modal-container h3 {
+  align-self: flex-start;
+  margin-top: 10px;
+}
+
+.modal-container .status-container svg {
+  margin-top: 15px;
+  height: 60px;
+  fill: #00c000;
 }
 
 .modal-container button svg {
@@ -188,6 +202,7 @@ div.loading-container {
 }
 
 .loading-container svg {
+  height: 20px;
   justify-self: end;
 }
 

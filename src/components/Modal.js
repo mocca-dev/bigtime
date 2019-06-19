@@ -1,34 +1,47 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 
-import { CheckSVG, CloseSVG } from "./Icons";
+import { CheckSVG, CloseSVG, LoadingSVG, OKPaymentSVG } from "./Icons";
 
-const Modal = ({ hideModal, okAction, cancelAction, title, bodyTxt }) => (
+const Modal = ({
+  hideModal,
+  okAction,
+  cancelAction,
+  title,
+  bodyTxt,
+  status
+}) => (
   <Fragment>
     <div className="overlay" />
     <div className="modal-container">
       <h3>{title}</h3>
       <span>{bodyTxt}</span>
-      <div className="bottom-bar">
-        {cancelAction && (
-          <button
-            onClick={() => {
-              cancelAction().then(() => hideModal());
-            }}
-          >
-            <CloseSVG />
-          </button>
-        )}
-        {okAction && (
-          <button
-            onClick={() => {
-              okAction().then(hasHide => hasHide && hideModal());
-            }}
-          >
-            <CheckSVG />
-          </button>
-        )}
+      <div className="status-container">
+        {status === "LOADING" && <LoadingSVG />}
+        {status === "SUCCESS" && <OKPaymentSVG />}
       </div>
+      {(cancelAction || okAction) && (
+        <div className="bottom-bar">
+          {cancelAction && (
+            <button
+              onClick={() => {
+                cancelAction().then(() => hideModal());
+              }}
+            >
+              <CloseSVG />
+            </button>
+          )}
+          {okAction && (
+            <button
+              onClick={() => {
+                okAction().then(hasHide => hasHide && hideModal());
+              }}
+            >
+              <CheckSVG />
+            </button>
+          )}
+        </div>
+      )}
     </div>
   </Fragment>
 );
