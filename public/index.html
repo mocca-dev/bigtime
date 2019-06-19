@@ -85,6 +85,11 @@
         fill: white;
       }
 
+      input {
+        background: none;
+        border: none;
+      }
+
       .App {
         height: 100vh;
       }
@@ -137,8 +142,6 @@
       .btn-play {
         left: 0;
         bottom: 0;
-        background: none;
-        border: none;
         padding: 10px;
         background-color: #172a84;
         width: 100%;
@@ -159,9 +162,16 @@
         height: 50px;
       }
 
-      .btn-wide {
+      .btn-wide,
+      .btn-ghost {
         width: 70%;
         font-size: 1rem;
+      }
+
+      .btn-ghost {
+        color: var(--primaryFg);
+        border: 2px solid var(--primaryFg);
+        font-weight: 700;
       }
 
       .btn-wide-body-w-icon {
@@ -238,11 +248,18 @@
 
       .login,
       .inactive-container {
+        font-size: 1rem;
         display: flex;
         height: 100vh;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+      }
+
+      .inactive-text + div {
+        z-index: 1;
+        width: 100%;
+        margin-bottom: 50px;
       }
 
       .login input,
@@ -262,8 +279,6 @@
       .login input {
         width: 70%;
         height: 50px;
-        background: none;
-        border: none;
         color: white;
         background-color: rgba(255, 255, 255, 0.15);
         padding: 15px;
@@ -276,7 +291,7 @@
         margin: auto;
       }
 
-      .inactive-container .btn-wide {
+      .inactive-container .btn-ghost {
         width: 100%;
       }
     </style>

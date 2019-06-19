@@ -20,7 +20,7 @@ class App extends Component {
   }
 
   render() {
-    const { signInWithGoogle, appServiceWorker, signOut } = this.props;
+    const { user, signInWithGoogle, appServiceWorker, signOut } = this.props;
     return (
       <div className="App">
         <UpdateCheck
@@ -53,7 +53,13 @@ class App extends Component {
           <Route
             exact
             path="/inactive"
-            component={() => <InactiveUserScreen signOut={() => signOut()} />}
+            component={props => (
+              <InactiveUserScreen
+                props={props}
+                user={user}
+                signOut={() => signOut()}
+              />
+            )}
           />
         </Router>
       </div>

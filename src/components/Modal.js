@@ -10,20 +10,24 @@ const Modal = ({ hideModal, okAction, cancelAction, title, bodyTxt }) => (
       <h3>{title}</h3>
       <span>{bodyTxt}</span>
       <div className="bottom-bar">
-        <button
-          onClick={() => {
-            cancelAction().then(() => hideModal());
-          }}
-        >
-          <CloseSVG />
-        </button>
-        <button
-          onClick={() => {
-            okAction().then(hasHide => hasHide && hideModal());
-          }}
-        >
-          <CheckSVG />
-        </button>
+        {cancelAction && (
+          <button
+            onClick={() => {
+              cancelAction().then(() => hideModal());
+            }}
+          >
+            <CloseSVG />
+          </button>
+        )}
+        {okAction && (
+          <button
+            onClick={() => {
+              okAction().then(hasHide => hasHide && hideModal());
+            }}
+          >
+            <CheckSVG />
+          </button>
+        )}
       </div>
     </div>
   </Fragment>
@@ -32,9 +36,9 @@ const Modal = ({ hideModal, okAction, cancelAction, title, bodyTxt }) => (
 export default Modal;
 
 Modal.propTypes = {
-  hideModal: PropTypes.func.isRequired,
-  okAction: PropTypes.func.isRequired,
-  cancelAction: PropTypes.func.isRequired,
+  hideModal: PropTypes.func,
+  okAction: PropTypes.func,
+  cancelAction: PropTypes.func,
   title: PropTypes.string.isRequired,
   bodyTxt: PropTypes.string.isRequired
 };
