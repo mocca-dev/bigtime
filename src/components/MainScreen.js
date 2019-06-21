@@ -10,6 +10,7 @@ import OutsideClick from "./OutsideClick";
 import { PlaySVG, PauseSVG, StopSVG } from "./Icons";
 import Modal from "./Modal";
 import withAuthentication from "./withAuthentication";
+import ReactNoSleep from "react-no-sleep";
 // import DelayDisplay from "./DelayDisplay";
 // import DelayModal from "./DelayModal";
 
@@ -47,18 +48,6 @@ const MainScreen = ({ update, signOut, profilePic }) => {
     setTheme(localStorage.getItem("theme") === "true");
   }, []);
 
-  const play = () => {
-    if (delay) {
-      while (delay > 0) {
-        setTimeout(() => {
-          setDelay(delay - 1);
-        }, 1000);
-      }
-      togglePlay();
-    } else {
-      togglePlay();
-    }
-  };
   const convertOffsetXToCurrentTime = e => {
     playerRef.current.currentTime =
       playerRef &&
@@ -102,11 +91,13 @@ const MainScreen = ({ update, signOut, profilePic }) => {
     }
   };
 
-  const togglePlay = () => {
+  const togglePlay = (enable, disable) => {
     const player = playerRef.current;
     if (playing) {
+      disable();
       player.pause();
     } else {
+      enable();
       player.play();
     }
     calcTime();
@@ -220,14 +211,18 @@ const MainScreen = ({ update, signOut, profilePic }) => {
               <StopSVG />
             </button>
           </div>
-          <ToggleBtn
-            cClass="btn btn-play"
-            IconT={PauseSVG}
-            IconF={PlaySVG}
-            value={playing}
-            toggle={play}
-            disabled={!songName}
-          />
+          <ReactNoSleep>
+            {({ isOn, enable, disable }) => (
+              <ToggleBtn
+                cClass="btn btn-play"
+                IconT={PauseSVG}
+                IconF={PlaySVG}
+                value={playing}
+                toggle={() => togglePlay(enable, disable)}
+                disabled={!songName}
+              />
+            )}
+          </ReactNoSleep>
         </div>
       </div>
     </Fragment>
