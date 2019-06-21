@@ -1,11 +1,29 @@
 import React from "react";
 import PropTypes from "prop-types";
+import ReactNoSleep from "react-no-sleep";
 
 const ToggleBtn = ({ toggle, value, cClass, IconT, IconF, disabled }) => {
+  const enableT = enable => {
+    enable();
+    toggle();
+  };
+  const disableT = disable => {
+    disable();
+    toggle();
+  };
+
   return (
-    <button className={cClass} onClick={() => toggle()} disabled={disabled}>
-      {value ? <IconT /> : <IconF />}
-    </button>
+    <ReactNoSleep>
+      {({ isOn, enable, disable }) => (
+        <button
+          className={cClass}
+          onClick={() => (isOn ? disableT(disable) : enableT(enable))}
+          disabled={disabled}
+        >
+          {value ? <IconT /> : <IconF />}
+        </button>
+      )}
+    </ReactNoSleep>
   );
 };
 

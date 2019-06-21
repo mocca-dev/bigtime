@@ -225,7 +225,7 @@ const MainScreen = ({ update, signOut, profilePic }) => {
             IconT={PauseSVG}
             IconF={PlaySVG}
             value={playing}
-            toggle={() => play()}
+            toggle={play}
             disabled={!songName}
           />
         </div>
