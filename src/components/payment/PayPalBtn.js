@@ -40,7 +40,7 @@ const PayPalBtn = ({ user, setModalVisibility, setModalContent, history }) => {
             firestore
               .collection("users")
               .doc(user.uid)
-              .set({ active: true })
+              .set({ active: true, paymentData: { ...data } })
               .then(() => {
                 showSuccessModal();
                 setTimeout(() => {
