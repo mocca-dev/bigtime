@@ -12,7 +12,6 @@ const Modal = ({
   status
 }) => (
   <Fragment>
-    <div className="overlay" />
     <div className="modal-container">
       <h3>{title}</h3>
       <span>{bodyTxt}</span>
@@ -43,6 +42,7 @@ const Modal = ({
         </div>
       )}
     </div>
+    <div className="overlay" />
   </Fragment>
 );
 

@@ -4,15 +4,12 @@ import TimeDisplay from "./TimeDisplay";
 import ProgressBar from "./ProgressBar";
 import AudioUpload from "./AudioUpload";
 import ToggleBtn from "./ToggleBtn";
-import SettingsBtn from "./SettingsBtn";
-import SettingsBar from "./SettingsBar";
-import OutsideClick from "./OutsideClick";
+import SettingsBtn from "./setting/SettingsBtn";
+import SettingsBar from "./setting/SettingsBar";
 import { PlaySVG, PauseSVG, StopSVG } from "./Icons";
 import Modal from "./Modal";
 import withAuthentication from "./withAuthentication";
 import ReactNoSleep from "react-no-sleep";
-// import DelayDisplay from "./DelayDisplay";
-// import DelayModal from "./DelayModal";
 
 const MainScreen = ({ update, signOut, profilePic }) => {
   const [minutes, setMinutes] = useState("00");
@@ -24,7 +21,6 @@ const MainScreen = ({ update, signOut, profilePic }) => {
   const [bucle, setBucle] = useState(true);
   const [progressWidth, setProgressWidth] = useState(0);
   const [showDelayModal, setShowDelayModal] = useState(false);
-  const [delay, setDelay] = useState(0);
   const [showSignOutModal, setShowSignOutModal] = useState(false);
 
   const playerRef = useRef(null);
@@ -94,10 +90,10 @@ const MainScreen = ({ update, signOut, profilePic }) => {
   const togglePlay = (enable, disable) => {
     const player = playerRef.current;
     if (playing) {
-      disable();
+      if (disable) disable();
       player.pause();
     } else {
-      enable();
+      if (enable) enable();
       player.play();
     }
     calcTime();
@@ -136,13 +132,6 @@ const MainScreen = ({ update, signOut, profilePic }) => {
 
   return (
     <Fragment>
-      {/* {showDelayModal && (
-        <DelayModal
-          delay={delay}
-          setDelay={setDelay}
-          setShowDelayModal={setShowDelayModal}
-        />
-      )} */}
       {showSignOutModal && (
         <Modal
           title="Salir"
@@ -157,7 +146,6 @@ const MainScreen = ({ update, signOut, profilePic }) => {
         onMouseDown={e => songName && convertOffsetXToCurrentTime(e)}
         duration={playerRef.current ? playerRef.current.duration : 0}
       />
-      {/* <DelayDisplay delay={delay} /> */}
       <TimeDisplay minutes={minutes} seconds={seconds} />
       <audio
         ref={playerRef}
@@ -173,28 +161,31 @@ const MainScreen = ({ update, signOut, profilePic }) => {
       <AudioUpload ref={audioInputRef} labelTxt={songName} />
       <div className="bottom">
         {showSettings && (
-          <OutsideClick action={() => setShowSettings(false)}>
-            <SettingsBar
-              data={{
-                bucle: bucle,
-                theme: theme,
-                update: update,
-                profilePic: null
-              }}
-              actions={{
-                toggleBucle: () => {
-                  setBucle(!bucle);
-                  persistSettings("bucle", !bucle);
-                },
-                setTheme: () => {
-                  setTheme(!theme);
-                  persistSettings("theme", !theme);
-                },
-                showDelayModal: () => setShowDelayModal(!showDelayModal),
-                signOut: () => setShowSignOutModal(true)
-              }}
-            />
-          </OutsideClick>
+          <SettingsBar
+            data={{
+              bucle: bucle,
+              theme: theme,
+              update: update,
+              profilePic: null
+            }}
+            actions={{
+              toggleBucle: () => {
+                setBucle(!bucle);
+                persistSettings("bucle", !bucle);
+              },
+              setTheme: () => {
+                setTheme(!theme);
+                persistSettings("theme", !theme);
+                document.documentElement.setAttribute(
+                  "data-theme",
+                  !theme ? "light" : "dark"
+                );
+              },
+              showDelayModal: () => setShowDelayModal(!showDelayModal),
+              signOut: () => setShowSignOutModal(true)
+            }}
+            setShowSettings={setShowSettings}
+          />
         )}
         <div className="bottom-bar">
           <div className="left-btns">

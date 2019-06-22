@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { SettingsSVG } from "./Icons";
+import { SettingsSVG } from "./../Icons";
 
 const SettingsBtn = ({ onClick, update }) => {
   const classStr = "btn btn-settings ";
