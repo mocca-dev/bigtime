@@ -340,4 +340,8 @@ div.loading-container {
   .login button {
     width: 50%;
   }
+
+  .settings-bar {
+    height: calc(100vh - 57px);
+  }
 }
