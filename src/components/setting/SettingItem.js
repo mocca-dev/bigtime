@@ -11,13 +11,31 @@ const SettingItem = ({ item }) => {
         </div>
         <div className="item-detail">{item.detail}</div>
       </div>
-      <Switch
-        onChange={() => item.action()}
-        checked={item.value}
-        onColor="#2693e6"
-        uncheckedIcon={item.uncheckedIcon ? <item.uncheckedIcon /> : false}
-        checkedIcon={item.checkedIcon ? <item.checkedIcon /> : false}
-      />
+      {item.buttonDetails && item.buttonDetails.toggle ? (
+        <Switch
+          onChange={() => item.action()}
+          checked={item.value}
+          onColor="#2693e6"
+          uncheckedIcon={
+            item.buttonDetails.uncheckedIcon ? (
+              <item.buttonDetails.uncheckedIcon />
+            ) : (
+              false
+            )
+          }
+          checkedIcon={
+            item.buttonDetails.checkedIcon ? (
+              <item.buttonDetails.checkedIcon />
+            ) : (
+              false
+            )
+          }
+        />
+      ) : (
+        <button className="btn btn-default" onClick={() => item.action()}>
+          <item.buttonDetails.checkedIcon />
+        </button>
+      )}
     </div>
   );
 };

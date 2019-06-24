@@ -303,6 +303,10 @@ div.loading-container {
   fill: white;
 }
 
+.btn-default svg {
+  margin: 0;
+}
+
 @media only screen and (orientation: landscape) {
   .btn-play span {
     font-size: 2em;

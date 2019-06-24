@@ -291,7 +291,8 @@ const MainScreen = ({ update, signOut, profilePic }) => {
   );
 };
 
-export default withAuthentication(MainScreen);
+// export default withAuthentication(MainScreen);
+export default MainScreen;
 
 MainScreen.propTypes = {
   update: PropTypes.bool.isRequired,

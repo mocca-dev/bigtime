@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import localforage from "localforage";
 
-import { TwitterSVG, CloseSVG, MoonSVG, SunSVG } from "../Icons";
+import { TwitterSVG, CloseSVG, MoonSVG, SunSVG, RefreshSVG } from "../Icons";
 import SettingItem from "./SettingItem";
 import OutsideClick from "./../OutsideClick";
 
@@ -16,20 +16,30 @@ const SettingsBar = ({ data, actions, setShowSettings }) => {
       detail: "Puede activar el modo oscuro o el modo claro",
       action: setTheme,
       value: theme,
-      checkedIcon: SunSVG,
-      uncheckedIcon: MoonSVG
+      buttonDetails: {
+        toggle: true,
+        checkedIcon: SunSVG,
+        uncheckedIcon: MoonSVG
+      }
     },
     {
       title: "Bucle",
       detail: "Al finalizar la pista volverá a reproducirse",
       action: toggleBucle,
-      value: bucle
+      value: bucle,
+      buttonDetails: {
+        toggle: true
+      }
     },
     {
       title: "Reiniciar",
       detail: "En caso de necesitarlo puede reiniciar la aplicación",
       action: () => window.location.reload(),
-      value: false
+      value: false,
+      buttonDetails: {
+        toggle: false,
+        checkedIcon: RefreshSVG
+      }
     },
     {
       title: "Limpiar Almacenaje",
@@ -39,7 +49,11 @@ const SettingsBar = ({ data, actions, setShowSettings }) => {
         localforage.clear();
         clearSong();
       },
-      value: false
+      value: false,
+      buttonDetails: {
+        toggle: false,
+        checkedIcon: SunSVG
+      }
     }
   ];
 
