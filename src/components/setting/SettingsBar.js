@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import localforage from "localforage";
 
 import { TwitterSVG, CloseSVG, MoonSVG, SunSVG } from "../Icons";
 import SettingItem from "./SettingItem";
@@ -7,11 +8,11 @@ import OutsideClick from "./../OutsideClick";
 
 const SettingsBar = ({ data, actions, setShowSettings }) => {
   const { theme, bucle } = data;
-  const { setTheme, toggleBucle, signOut } = actions;
+  const { setTheme, toggleBucle, signOut, clearSong } = actions;
 
   const items = [
     {
-      title: "Tema",
+      title: "Modo Oscuro",
       detail: "Puede activar el modo oscuro o el modo claro",
       action: setTheme,
       value: theme,
@@ -28,6 +29,16 @@ const SettingsBar = ({ data, actions, setShowSettings }) => {
       title: "Reiniciar",
       detail: "En caso de necesitarlo puede reiniciar la aplicación",
       action: () => window.location.reload(),
+      value: false
+    },
+    {
+      title: "Limpiar Almacenaje",
+      detail:
+        "Al limpiar el almacenaje la última pista seleccionada deberá ser cargada nuevamente",
+      action: () => {
+        localforage.clear();
+        clearSong();
+      },
       value: false
     }
   ];

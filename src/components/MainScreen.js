@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef, Fragment } from "react";
 import PropTypes from "prop-types";
+import localforage from "localforage";
+
 import TimeDisplay from "./TimeDisplay";
 import ProgressBar from "./ProgressBar";
 import AudioUpload from "./AudioUpload";
@@ -26,12 +28,56 @@ const MainScreen = ({ update, signOut, profilePic }) => {
   const playerRef = useRef(null);
   const audioInputRef = useRef(null);
 
+  var BASE64_MARKER = ";base64,";
+
+  const convertDataURIToBinary = dataURI => {
+    var base64Index = dataURI.indexOf(BASE64_MARKER) + BASE64_MARKER.length;
+    var base64 = dataURI.substring(base64Index);
+    var raw = window.atob(base64);
+    var rawLength = raw.length;
+    var array = new Uint8Array(new ArrayBuffer(rawLength));
+
+    for (let i = 0; i < rawLength; i++) {
+      array[i] = raw.charCodeAt(i);
+    }
+    return array;
+  };
+
+  useEffect(() => {
+    localforage.getItem("track_name").then(name => {
+      if (name) {
+        localforage.getItem("track_data").then(res => {
+          var binary = convertDataURIToBinary(res);
+          var blob = new Blob([binary], { type: "audio/mp3" });
+          var blobUrl = URL.createObjectURL(blob);
+          playerRef.current.src = blobUrl;
+          setSongName(name);
+        });
+      }
+    });
+  }, []);
+
   useEffect(() => {
     audioInputRef.current.onchange = fileInput => {
       const files = fileInput.target;
-      const file = URL.createObjectURL(files.files[0]);
+      if (!files.files[0] || files.files[0].type.indexOf("audio/") !== 0) {
+        console.warn("not an audio file");
+        return;
+      }
       setSongName(files.files[0].name);
-      playerRef.current.src = file;
+
+      localforage.getItem("track_data").then(res => {
+        const reader = new FileReader();
+        reader.onload = function() {
+          var str = this.result;
+          localforage.setItem("track_name", files.files[0].name);
+          localforage.setItem("track_data", str).then(value => {
+            playerRef.current.src = value;
+            setPlaying(false);
+          });
+        };
+        reader.readAsDataURL(files.files[0]);
+      });
     };
   }, []);
 
@@ -182,7 +228,12 @@ const MainScreen = ({ update, signOut, profilePic }) => {
                 );
               },
               showDelayModal: () => setShowDelayModal(!showDelayModal),
-              signOut: () => setShowSignOutModal(true)
+              signOut: () => setShowSignOutModal(true),
+              clearSong: () => {
+                setSongName("");
+                playerRef.current.src = "";
+                indexedDB.deleteDatabase("localforage");
+              }
             }}
             setShowSettings={setShowSettings}
           />
