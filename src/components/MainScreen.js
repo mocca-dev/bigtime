@@ -24,6 +24,7 @@ const MainScreen = ({ update, signOut, profilePic }) => {
   const [progressWidth, setProgressWidth] = useState(0);
   const [showDelayModal, setShowDelayModal] = useState(false);
   const [showSignOutModal, setShowSignOutModal] = useState(false);
+  const [showFileTypeModal, setShowFileTypeModal] = useState(false);
 
   const playerRef = useRef(null);
   const audioInputRef = useRef(null);
@@ -61,7 +62,8 @@ const MainScreen = ({ update, signOut, profilePic }) => {
     audioInputRef.current.onchange = fileInput => {
       const files = fileInput.target;
       if (!files.files[0] || files.files[0].type.indexOf("audio/") !== 0) {
-        console.warn("not an audio file");
+        console.warn("not an audio file", files.files[0].type);
+        setShowFileTypeModal(true);
         return;
       }
       setSongName(files.files[0].name);
@@ -185,6 +187,15 @@ const MainScreen = ({ update, signOut, profilePic }) => {
           hideModal={() => setShowSignOutModal(false)}
           okAction={() => signOutOK()}
           cancelAction={() => new Promise((resolve, reject) => resolve(null))}
+        />
+      )}
+      {showFileTypeModal && (
+        <Modal
+          title="Tipo de archivo incorrecto"
+          bodyTxt="Debes elegir un archivo con formato correcto de audio. Como pueden ser mp3, wav, 3gp, aac, avi, oga."
+          hideModal={() => setShowFileTypeModal(false)}
+          okAction={() => new Promise((resolve, reject) => resolve(true))}
+          cancelAction={null}
         />
       )}
       <ProgressBar

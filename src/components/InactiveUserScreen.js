@@ -38,6 +38,7 @@ const InactiveUserScreen = ({ user, signOut, props }) => {
           title={paymentModalContent.title}
           bodyTxt={paymentModalContent.bodyTxt}
           status={paymentModalContent.status}
+          preventOutside={true}
         />
       )}
       <LogoSVG />
