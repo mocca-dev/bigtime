@@ -25,6 +25,7 @@ const MainScreen = ({ update, signOut, profilePic }) => {
   const [showDelayModal, setShowDelayModal] = useState(false);
   const [showSignOutModal, setShowSignOutModal] = useState(false);
   const [showFileTypeModal, setShowFileTypeModal] = useState(false);
+  const [showFileLoading, setShowFileLoading] = useState(false);
 
   const playerRef = useRef(null);
   const audioInputRef = useRef(null);
@@ -45,6 +46,7 @@ const MainScreen = ({ update, signOut, profilePic }) => {
   };
 
   useEffect(() => {
+    setShowFileLoading(true);
     localforage.getItem("track_name").then(name => {
       if (name) {
         localforage.getItem("track_data").then(res => {
@@ -53,13 +55,17 @@ const MainScreen = ({ update, signOut, profilePic }) => {
           var blobUrl = URL.createObjectURL(blob);
           playerRef.current.src = blobUrl;
           setSongName(name);
+          setShowFileLoading(false);
+          return;
         });
       }
+      setShowFileLoading(false);
     });
   }, []);
 
   useEffect(() => {
     audioInputRef.current.onchange = fileInput => {
+      setShowFileLoading(true);
       const files = fileInput.target;
       if (!files.files[0] || files.files[0].type.indexOf("audio/") !== 0) {
         console.warn("not an audio file", files.files[0].type);
@@ -68,18 +74,17 @@ const MainScreen = ({ update, signOut, profilePic }) => {
       }
       setSongName(files.files[0].name);
 
-      localforage.getItem("track_data").then(res => {
-        const reader = new FileReader();
-        reader.onload = function() {
-          var str = this.result;
-          localforage.setItem("track_name", files.files[0].name);
-          localforage.setItem("track_data", str).then(value => {
-            playerRef.current.src = value;
-            setPlaying(false);
-          });
-        };
-        reader.readAsDataURL(files.files[0]);
-      });
+      const reader = new FileReader();
+      reader.onload = function() {
+        var str = this.result;
+        localforage.setItem("track_name", files.files[0].name);
+        localforage.setItem("track_data", str).then(value => {
+          playerRef.current.src = value;
+          setShowFileLoading(false);
+          setPlaying(false);
+        });
+      };
+      reader.readAsDataURL(files.files[0]);
     };
   }, []);
 
@@ -215,7 +220,11 @@ const MainScreen = ({ update, signOut, profilePic }) => {
           }
         }}
       />
-      <AudioUpload ref={audioInputRef} labelTxt={songName} />
+      <AudioUpload
+        ref={audioInputRef}
+        labelTxt={songName}
+        showLoading={showFileLoading}
+      />
       <div className="bottom">
         {showSettings && (
           <SettingsBar

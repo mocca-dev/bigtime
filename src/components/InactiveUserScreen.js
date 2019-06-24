@@ -47,7 +47,6 @@ const InactiveUserScreen = ({ user, signOut, props }) => {
         Para poder activar su cuenta deberá realizar el pago del cupón que le
         fue enviado a la dirección de e-mail brindada por usted.
       </p>
-      {/* <button className="btn btn-wide">REENVIAR CUPON DE PAGO</button> */}
       <PayPalBtn
         user={user}
         setModalVisibility={flag => setShowPaymentModal(flag)}

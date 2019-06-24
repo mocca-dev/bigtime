@@ -1,7 +1,9 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 
-const AudioUpload = React.forwardRef(({ labelTxt }, ref) => (
+import { LoadingSVG } from "./Icons";
+
+const AudioUpload = React.forwardRef(({ labelTxt, showLoading }, ref) => (
   <Fragment>
     <input
       className="input-audio"
@@ -11,8 +13,9 @@ const AudioUpload = React.forwardRef(({ labelTxt }, ref) => (
       id="audio-file"
       accpet="audio/*"
     />
-    <label htmlFor="audio-file">
+    <label className="upload-label" htmlFor="audio-file">
       {labelTxt ? labelTxt : "Seleccionar tema..."}
+      {showLoading && <LoadingSVG />}
     </label>
   </Fragment>
 ));
