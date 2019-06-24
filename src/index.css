@@ -303,8 +303,16 @@ div.loading-container {
   fill: white;
 }
 
+.btn-default {
+  background-color: white;
+}
+
 .btn-default svg {
   margin: 0;
+}
+
+.btn-default svg path {
+  fill: black;
 }
 
 @media only screen and (orientation: landscape) {
