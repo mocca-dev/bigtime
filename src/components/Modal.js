@@ -27,7 +27,7 @@ const Modal = ({
             {cancelAction ? (
               <button
                 onClick={() => {
-                  cancelAction().then(() => hasHide => hasHide && hideModal());
+                  cancelAction().then(hasHide => hasHide && hideModal());
                 }}
               >
                 <CloseSVG />

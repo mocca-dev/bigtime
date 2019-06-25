@@ -2,7 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 import localforage from "localforage";
 
-import { TwitterSVG, CloseSVG, MoonSVG, SunSVG, RefreshSVG } from "../Icons";
+import {
+  MailSVG,
+  CloseSVG,
+  MoonSVG,
+  SunSVG,
+  RefreshSVG,
+  TrashSVG,
+  LogOutSVG
+} from "../Icons";
 import SettingItem from "./SettingItem";
 import OutsideClick from "./../OutsideClick";
 
@@ -52,7 +60,7 @@ const SettingsBar = ({ data, actions, setShowSettings }) => {
       value: false,
       buttonDetails: {
         toggle: false,
-        checkedIcon: SunSVG
+        checkedIcon: TrashSVG
       }
     }
   ];
@@ -78,9 +86,12 @@ const SettingsBar = ({ data, actions, setShowSettings }) => {
           </div>
           <div className="bottom-bar">
             <button>
-              <TwitterSVG /> Contacto
+              <MailSVG /> <span>Contacto</span>
             </button>
-            <button onClick={signOut}>Cerrar Sesión</button>
+            <button onClick={signOut}>
+              <LogOutSVG />
+              <span>Cerrar Sesión</span>
+            </button>
           </div>
         </div>
       </OutsideClick>

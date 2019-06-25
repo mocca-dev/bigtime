@@ -32,7 +32,10 @@ const SettingItem = ({ item }) => {
           }
         />
       ) : (
-        <button className="btn btn-default" onClick={() => item.action()}>
+        <button
+          className="btn btn-default btn-setting"
+          onClick={() => item.action()}
+        >
           <item.buttonDetails.checkedIcon />
         </button>
       )}

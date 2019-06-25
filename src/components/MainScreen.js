@@ -59,32 +59,28 @@ const MainScreen = ({ update, signOut, profilePic }) => {
           return;
         });
       }
-      setShowFileLoading(false);
     });
   }, []);
 
   useEffect(() => {
     audioInputRef.current.onchange = fileInput => {
-      setShowFileLoading(true);
       const files = fileInput.target;
-      if (!files.files[0] || files.files[0].type.indexOf("audio/") !== 0) {
-        console.warn("not an audio file", files.files[0].type);
-        setShowFileTypeModal(true);
-        return;
-      }
-      setSongName(files.files[0].name);
+      if (files.files.length) {
+        setShowFileLoading(true);
+        setSongName(files.files[0].name);
 
-      const reader = new FileReader();
-      reader.onload = function() {
-        var str = this.result;
-        localforage.setItem("track_name", files.files[0].name);
-        localforage.setItem("track_data", str).then(value => {
-          playerRef.current.src = value;
-          setShowFileLoading(false);
-          setPlaying(false);
-        });
-      };
-      reader.readAsDataURL(files.files[0]);
+        const reader = new FileReader();
+        playerRef.current.src = URL.createObjectURL(files.files[0]);
+        reader.onload = function() {
+          const str = this.result;
+          localforage.setItem("track_name", files.files[0].name);
+          localforage.setItem("track_data", str).then(() => {
+            setShowFileLoading(false);
+            setPlaying(false);
+          });
+        };
+        reader.readAsDataURL(files.files[0]);
+      }
     };
   }, []);
 
@@ -191,7 +187,7 @@ const MainScreen = ({ update, signOut, profilePic }) => {
           bodyTxt="Está seguro que desea cerrar sesión?"
           hideModal={() => setShowSignOutModal(false)}
           okAction={() => signOutOK()}
-          cancelAction={() => new Promise((resolve, reject) => resolve(null))}
+          cancelAction={() => new Promise((resolve, reject) => resolve(true))}
         />
       )}
       {showFileTypeModal && (
@@ -291,8 +287,7 @@ const MainScreen = ({ update, signOut, profilePic }) => {
   );
 };
 
-// export default withAuthentication(MainScreen);
-export default MainScreen;
+export default withAuthentication(MainScreen);
 
 MainScreen.propTypes = {
   update: PropTypes.bool.isRequired,

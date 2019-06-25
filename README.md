@@ -1,11 +1,10 @@
-<<<<<<< HEAD
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<!-- This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). -->
 
-## Available Scripts
+## A little bit of history
 
-In the project directory, you can run:
+One day, a friend of mine ask me for an app to
 
-### `npm start`
+<!-- ### `npm start`
 
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -69,4 +68,4 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
 =======
 # bigtime
->>>>>>> ef226d2fb7d4d3a9cb53d4eea03e958f00135312
+>>>>>>> ef226d2fb7d4d3a9cb53d4eea03e958f00135312 -->

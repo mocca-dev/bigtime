@@ -117,6 +117,10 @@
   justify-content: space-between;
 }
 
+.settings-bar header h2 {
+  font-size: 1.5rem;
+}
+
 .settings-bar .bottom-bar {
   position: absolute;
   display: flex;
@@ -313,6 +317,10 @@ div.loading-container {
 
 .btn-default svg path {
   fill: black;
+}
+
+.btn-setting {
+  margin-right: 0;
 }
 
 @media only screen and (orientation: landscape) {
