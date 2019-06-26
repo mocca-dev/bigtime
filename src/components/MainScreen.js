@@ -58,6 +58,8 @@ const MainScreen = ({ update, signOut, profilePic }) => {
           setShowFileLoading(false);
           return;
         });
+      } else {
+        setShowFileLoading(false);
       }
     });
   }, []);
