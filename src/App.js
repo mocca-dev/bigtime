@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import withFirebaseAuth from "react-with-firebase-auth";
-import { firebaseAppAuth, providers } from "./firebase/firebase";
+import {
+  firebaseAppAuth,
+  providers,
+  doSignInWithGoogle
+} from "./firebase/firebase";
 import LoginScreen from "./components/login/LoginScreen";
 import MainScreen from "./components/MainScreen";
 import UpdateCheck from "./components/UpdateCheck";
@@ -20,11 +24,11 @@ class App extends Component {
   }
 
   render() {
-    const { user, signInWithGoogle, appServiceWorker, signOut } = this.props;
+    const { user, sWPromise, signOut } = this.props;
     return (
       <div className="App">
         <UpdateCheck
-          appServiceWorker={appServiceWorker}
+          sWPromise={sWPromise}
           setUpdate={() => this.setState({ update: true })}
         />
         <Router>
@@ -46,7 +50,7 @@ class App extends Component {
             component={props => (
               <LoginScreen
                 props={props}
-                signInWithGoogle={() => signInWithGoogle()}
+                signInWithGoogle={() => doSignInWithGoogle()}
               />
             )}
           />

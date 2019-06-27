@@ -6,10 +6,26 @@ import config from "./firebaseConfig";
 const firebaseApp = firebase.initializeApp(config);
 
 const firebaseAppAuth = firebaseApp.auth();
+
+const firestore = firebaseApp.firestore();
+firestore.enablePersistence();
+
 const providers = {
   googleProvider: new firebase.auth.GoogleAuthProvider()
 };
 
-const firestore = firebaseApp.firestore();
+const doSignInWithGoogle = () =>
+  firebaseAppAuth
+    .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+    .then(function() {
+      return firebaseApp
+        .auth()
+        .signInWithPopup(new firebase.auth.GoogleAuthProvider());
+    })
+    .catch(function(error) {
+      // Handle Errors here.
+      // var errorCode = error.code;
+      // var errorMessage = error.message;
+    });
 
-export { firebaseAppAuth, providers, firestore };
+export { firebaseAppAuth, providers, firestore, doSignInWithGoogle };

@@ -13,19 +13,19 @@
     "react-paypal-button-v2": "^2.3.1",
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
-    "react-service-worker": "^0.1.1",
     "react-switch": "^5.0.0",
     "react-with-firebase-auth": "^1.0.3"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && cra-append-sw -s ./src/custom-sw.js",
+    "build": "react-scripts build && cra-append-sw -s ./src/custom-sw.js && npm run play-finish-sound",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "clean-map": "rimraf build/**/*.map",
-    "deploy": "npm run build && npm run clean-map && cd build && surge -d https://bigtime.surge.sh",
-    "deploy-q": "npm run build && npm run clean-map && cd build && surge -d https://qbigtime.surge.sh",
-    "deploy-sm": "npm run build && cd build && surge -d https://qbigtime.surge.sh"
+    "deploy": "npm run build && npm run clean-map && cd build && surge -d https://bigtime.surge.sh && npm run play-finish-sound",
+    "deploy-q": "npm run build && npm run clean-map && cd build && surge -d https://qbigtime.surge.sh && npm run play-finish-sound",
+    "deploy-sm": "npm run build && cd build && surge -d https://qbigtime.surge.sh && npm run play-finish-sound",
+    "play-finish-sound": "afplay /System/Library/Sounds/Glass.aiff"
   },
   "eslintConfig": {
     "extends": "react-app"

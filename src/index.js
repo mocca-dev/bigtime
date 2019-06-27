@@ -2,10 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import registerServiceWorker from "react-service-worker";
+import * as serviceWorker from "./serviceWorker";
 
-const appSW = registerServiceWorker();
-ReactDOM.render(
-  <App appServiceWorker={appSW} />,
-  document.getElementById("root")
-);
+const sWPromise = serviceWorker.register();
+ReactDOM.render(<App sWPromise={sWPromise} />, document.getElementById("root"));
