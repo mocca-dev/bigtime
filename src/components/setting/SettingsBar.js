@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState, Fragment } from "react";
 import PropTypes from "prop-types";
 import localforage from "localforage";
+
+import Version from "../Version";
 
 import {
   MailSVG,
@@ -13,10 +15,13 @@ import {
 } from "../Icons";
 import SettingItem from "./SettingItem";
 import OutsideClick from "./../OutsideClick";
+import ChangeLog from "../ChangeLog";
 
 const SettingsBar = ({ data, actions, setShowSettings }) => {
   const { theme, bucle } = data;
   const { setTheme, toggleBucle, signOut, clearSong } = actions;
+
+  const [showChangeLog, setShowChangeLog] = useState(false);
 
   const items = [
     {
@@ -66,36 +71,44 @@ const SettingsBar = ({ data, actions, setShowSettings }) => {
   ];
 
   return (
-    <div className="setting-bar-container">
+    <Fragment>
       <div className="overlay" />
       <OutsideClick action={() => setShowSettings(false)}>
-        <div className="settings-bar">
-          <header>
-            <h2>Ajustes</h2>
-            <button
-              className="close-btn"
-              onClick={() => setShowSettings(false)}
-            >
-              <CloseSVG />
-            </button>
-          </header>
-          <div className="items-container">
-            {items.map((item, i) => (
-              <SettingItem item={item} key={i} />
-            ))}
+        <Fragment>
+          {showChangeLog && <ChangeLog close={() => setShowChangeLog(false)} />}
+          <div className="setting-bar-container">
+            <div className="settings-bar">
+              <header>
+                <span>
+                  <h2>Ajustes</h2>
+                  <Version onClick={() => setShowChangeLog(true)} />
+                </span>
+                <button
+                  className="close-btn"
+                  onClick={() => setShowSettings(false)}
+                >
+                  <CloseSVG />
+                </button>
+              </header>
+              <div className="items-container">
+                {items.map((item, i) => (
+                  <SettingItem item={item} key={i} />
+                ))}
+              </div>
+              <div className="bottom-bar">
+                <button>
+                  <MailSVG /> <span>Contacto</span>
+                </button>
+                <button onClick={signOut}>
+                  <LogOutSVG />
+                  <span>Cerrar Sesión</span>
+                </button>
+              </div>
+            </div>
           </div>
-          <div className="bottom-bar">
-            <button>
-              <MailSVG /> <span>Contacto</span>
-            </button>
-            <button onClick={signOut}>
-              <LogOutSVG />
-              <span>Cerrar Sesión</span>
-            </button>
-          </div>
-        </div>
+        </Fragment>
       </OutsideClick>
-    </div>
+    </Fragment>
   );
 };
 

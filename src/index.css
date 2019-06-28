@@ -118,7 +118,13 @@
 }
 
 .settings-bar header h2 {
+  display: inline-block;
   font-size: 1.5rem;
+}
+
+.settings-bar header span button {
+  color: #bbb;
+  font-size: 0.8rem;
 }
 
 .settings-bar .bottom-bar {
@@ -150,6 +156,28 @@
 .settings-bar .bottom-bar button svg {
   height: 15px;
   margin-right: 5px;
+}
+
+.changelog-container {
+  position: absolute;
+  z-index: 16;
+  width: 100vw;
+  height: 1000vh;
+  background: grey;
+  margin: 0;
+  padding: 0 15px;
+  border-radius: 3px;
+}
+
+.changelog-container header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.changelog-container .close-btn {
+  width: 54px;
+  height: 54px;
 }
 
 .close-btn {
