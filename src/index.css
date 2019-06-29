@@ -256,7 +256,7 @@
   opacity: 0.8;
 }
 
-.modal-container + .overlay {
+.modal-overlay {
   z-index: 14;
   opacity: 0.65;
 }

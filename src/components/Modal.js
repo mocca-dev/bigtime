@@ -48,7 +48,7 @@ const Modal = ({
         )}
       </div>
     </OutsideClick>
-    <div className="overlay" />
+    <div className="overlay modal-overlay" />
   </Fragment>
 );
 
