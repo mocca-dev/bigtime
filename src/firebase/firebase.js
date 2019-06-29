@@ -28,4 +28,27 @@ const doSignInWithGoogle = () =>
       // var errorMessage = error.message;
     });
 
-export { firebaseAppAuth, providers, firestore, doSignInWithGoogle };
+const sendSignInLinkToEmail = (email, actionCodeSettings) =>
+  firebaseAppAuth
+    .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+    .then(function() {
+      return firebaseApp
+        .auth()
+        .sendSignInLinkToEmail(email, actionCodeSettings);
+    });
+
+const doSignInWithEmailLink = (email, fullUrl) =>
+  firebaseAppAuth
+    .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+    .then(function() {
+      return firebaseApp.auth().signInWithEmailLink(email, fullUrl);
+    });
+
+export {
+  firebaseAppAuth,
+  providers,
+  firestore,
+  doSignInWithGoogle,
+  sendSignInLinkToEmail,
+  doSignInWithEmailLink
+};
