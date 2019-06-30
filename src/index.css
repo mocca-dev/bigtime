@@ -209,10 +209,11 @@
   z-index: 15;
   position: fixed;
   left: 50%;
+  font-size: 1rem;
   transform: translateX(-50%);
   top: calc(50vh - 75px);
   padding: 15px;
-  width: 70%;
+  width: 75%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -379,5 +380,9 @@ div.loading-container {
 
   .settings-bar {
     height: calc(100vh - 57px);
+  }
+
+  .modal-container {
+    width: 42%;
   }
 }
