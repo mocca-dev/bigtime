@@ -14,10 +14,13 @@ const withAuthentication = Component => {
             .get()
             .then(user => {
               setShow(true);
-
-              const { active } = user.data();
-              if (active) {
-                props.history.push("/");
+              if (user.exists) {
+                const { active } = user.data();
+                if (active) {
+                  props.history.push("/");
+                } else {
+                  props.history.push("/inactive");
+                }
               } else {
                 props.history.push("/inactive");
               }
