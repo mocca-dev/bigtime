@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Suspense, lazy } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import withFirebaseAuth from "react-with-firebase-auth";
 import {
@@ -6,10 +6,13 @@ import {
   providers,
   doSignInWithGoogle
 } from "./firebase/firebase";
-import LoginScreen from "./components/login/LoginScreen";
-import MainScreen from "./components/MainScreen";
 import UpdateCheck from "./components/UpdateCheck";
-import InactiveUserScreen from "./components/InactiveUserScreen";
+
+const LoginScreen = lazy(() => import("./components/login/LoginScreen"));
+const MainScreen = lazy(() => import("./components/MainScreen"));
+const InactiveUserScreen = lazy(() =>
+  import("./components/InactiveUserScreen")
+);
 
 class App extends Component {
   constructor(props) {
@@ -32,40 +35,42 @@ class App extends Component {
           setUpdate={() => this.setState({ update: true })}
         />
         <Router>
-          <Route
-            exact
-            path="/"
-            component={() => (
-              <MainScreen
-                update={this.state.update}
-                // profilePic={user && user.photoURL}
-                profilePic={""}
-                signOut={() => signOut()}
-                user={user}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/login"
-            component={props => (
-              <LoginScreen
-                props={props}
-                signInWithGoogle={() => doSignInWithGoogle()}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/inactive"
-            component={props => (
-              <InactiveUserScreen
-                props={props}
-                user={user}
-                signOut={() => signOut()}
-              />
-            )}
-          />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Route
+              exact
+              path="/"
+              component={() => (
+                <MainScreen
+                  update={this.state.update}
+                  // profilePic={user && user.photoURL}
+                  profilePic={""}
+                  signOut={() => signOut()}
+                  user={user}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/login"
+              component={props => (
+                <LoginScreen
+                  props={props}
+                  signInWithGoogle={() => doSignInWithGoogle()}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/inactive"
+              component={props => (
+                <InactiveUserScreen
+                  props={props}
+                  user={user}
+                  signOut={() => signOut()}
+                />
+              )}
+            />
+          </Suspense>
         </Router>
       </div>
     );
