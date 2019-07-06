@@ -5,23 +5,25 @@ import localforage from "localforage";
 import Version from "../Version";
 
 import {
-  MailSVG,
   CloseSVG,
   MoonSVG,
   SunSVG,
   RefreshSVG,
   TrashSVG,
-  LogOutSVG
+  LogOutSVG,
+  HelpSVG
 } from "../Icons";
 import SettingItem from "./SettingItem";
 import OutsideClick from "./../OutsideClick";
-import ChangeLog from "../ChangeLog";
+import ChangeLog from "./ChangeLog";
+import Help from "../Help";
 
 const SettingsBar = ({ data, actions, setShowSettings }) => {
-  const { theme, bucle } = data;
+  const { theme, bucle, user } = data;
   const { setTheme, toggleBucle, signOut, clearSong } = actions;
 
   const [showChangeLog, setShowChangeLog] = useState(false);
+  const [showHelp, setShowHelp] = useState(false);
 
   const items = [
     {
@@ -76,6 +78,7 @@ const SettingsBar = ({ data, actions, setShowSettings }) => {
       <OutsideClick action={() => setShowSettings(false)}>
         <Fragment>
           {showChangeLog && <ChangeLog close={() => setShowChangeLog(false)} />}
+          {showHelp && <Help close={() => setShowHelp(false)} user={user} />}
           <div className="setting-bar-container">
             <div className="settings-bar">
               <header>
@@ -96,8 +99,8 @@ const SettingsBar = ({ data, actions, setShowSettings }) => {
                 ))}
               </div>
               <div className="bottom-bar">
-                <button>
-                  <MailSVG /> <span>Contacto</span>
+                <button onClick={() => setShowHelp(true)}>
+                  <HelpSVG /> <span>Ayuda</span>
                 </button>
                 <button onClick={signOut}>
                   <LogOutSVG />

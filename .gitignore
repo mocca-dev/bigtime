@@ -24,5 +24,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 src/firebase/firebaseConfig.js
+functions/config.js
 
 src/components/payment/paypal-config.js

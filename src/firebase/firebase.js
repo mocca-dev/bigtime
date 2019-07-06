@@ -50,5 +50,6 @@ export {
   firestore,
   doSignInWithGoogle,
   sendSignInLinkToEmail,
-  doSignInWithEmailLink
+  doSignInWithEmailLink,
+  firebase
 };

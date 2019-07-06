@@ -3,11 +3,13 @@ import PropTypes from "prop-types";
 import withAuthentication from "./../withAuthentication";
 import PasswordlessSigning from "./PasswordlessSigning";
 
-import { GoogleSVG, LogoSVG } from "./../Icons";
+import { GoogleSVG, LogoSVG, HelpSVG } from "./../Icons";
 import StatusMsg from "./StatusMsg";
+import Help from "../Help";
 
 const LoginScreen = ({ signInWithGoogle, props }) => {
   const [backFromEmail, setBackFromEmail] = useState(false);
+  const [showHelp, setShowHelp] = useState(false);
   const [statusMsg, setStatusMsg] = useState({
     content: "",
     color: "",
@@ -16,6 +18,24 @@ const LoginScreen = ({ signInWithGoogle, props }) => {
 
   return (
     <div className="login">
+      <span
+        className="btn-help"
+        onClick={() => {
+          setShowHelp(true);
+        }}
+      >
+        <HelpSVG />{" "}
+      </span>
+      {showHelp && (
+        <Help
+          close={() => setShowHelp(false)}
+          user={{
+            uid: "a",
+            displayName: "anonymus",
+            email: ""
+          }}
+        />
+      )}
       <LogoSVG />
       {!backFromEmail ? (
         <Fragment>

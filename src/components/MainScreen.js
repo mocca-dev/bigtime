@@ -13,7 +13,7 @@ import Modal from "./Modal";
 import withAuthentication from "./withAuthentication";
 import ReactNoSleep from "react-no-sleep";
 
-const MainScreen = ({ update, signOut, profilePic }) => {
+const MainScreen = ({ update, signOut, profilePic, user }) => {
   const [minutes, setMinutes] = useState("00");
   const [seconds, setSeconds] = useState("00");
   const [playing, setPlaying] = useState(false);
@@ -40,8 +40,10 @@ const MainScreen = ({ update, signOut, profilePic }) => {
           var binary = convertDataURIToBinary(res);
           var blob = new Blob([binary], { type: "audio/mp3" });
           var blobUrl = URL.createObjectURL(blob);
-          playerRef.current.src = blobUrl;
-          setSongName(name);
+          if (playerRef.current) {
+            playerRef.current.src = blobUrl;
+            setSongName(name);
+          }
           setShowFileLoading(false);
           return;
         });
@@ -230,7 +232,8 @@ const MainScreen = ({ update, signOut, profilePic }) => {
               bucle: bucle,
               theme: theme,
               update: update,
-              profilePic: null
+              profilePic: null,
+              user: user
             }}
             actions={{
               toggleBucle: () => {

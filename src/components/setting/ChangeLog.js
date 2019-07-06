@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
-import { CloseSVG } from "./Icons";
+import { CloseSVG } from "../Icons";
 
 const ChangeLog = ({ close }) => {
   const [version, setVersion] = useState("");
@@ -19,14 +19,14 @@ const ChangeLog = ({ close }) => {
         </button>
       </header>
       <section>
-        <h3>Nuevas Funcionalidades</h3>
+        {/* <h3>Nuevas Funcionalidades</h3>
         <ul>
           <li>
             Ahora el último tema cargado se volverá a cargar cuando se abra la
             aplicación.
           </li>
         </ul>
-        <h3>Bugs Arreglados</h3>
+        <h3>Bugs Arreglados</h3> */}
       </section>
     </div>
   );

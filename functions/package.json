@@ -9,14 +9,15 @@
     "logs": "firebase functions:log"
   },
   "dependencies": {
-    "firebase-admin": "~6.0.0",
-    "firebase-functions": "^2.1.0"
+    "firebase-admin": "^8.2.0",
+    "firebase-functions": "^3.0.2",
+    "nodemailer": "^6.2.1"
   },
   "private": true,
   "devDependencies": {
     "firebase-functions-test": "^0.1.6"
   },
   "engines": {
-    "node": "6"
+    "node": "8"
   }
 }

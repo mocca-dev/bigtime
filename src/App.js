@@ -41,6 +41,7 @@ class App extends Component {
                 // profilePic={user && user.photoURL}
                 profilePic={""}
                 signOut={() => signOut()}
+                user={user}
               />
             )}
           />
