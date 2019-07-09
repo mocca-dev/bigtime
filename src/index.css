@@ -390,6 +390,7 @@ div.loading-container {
 
 .upload-label svg {
   height: 17px;
+  margin-left: 10px;
 }
 
 .upload-label svg path {

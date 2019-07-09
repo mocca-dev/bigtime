@@ -203,7 +203,12 @@ const MainScreen = ({ update, signOut, profilePic, user }) => {
           cancelAction={null}
         />
       )}
-      <TimeDisplay minutes={minutes} seconds={seconds} empty={!songName} />
+      <TimeDisplay
+        minutes={minutes}
+        seconds={seconds}
+        empty={!songName}
+        duration={playerRef.current ? playerRef.current.duration : 0}
+      />
       <audio
         ref={playerRef}
         onTimeUpdate={() => {
@@ -257,7 +262,6 @@ const MainScreen = ({ update, signOut, profilePic, user }) => {
         <ProgressBar
           progressWidth={progressWidth}
           onMouseDown={e => songName && convertOffsetXToCurrentTime(e)}
-          duration={playerRef.current ? playerRef.current.duration : 0}
         />
         <div className="bottom-bar">
           <div className="left-btns">
