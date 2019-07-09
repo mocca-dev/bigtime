@@ -34,6 +34,8 @@
         --secondRGBA: rgba(0, 0, 0, 0.15);
         --svgColor: 1;
         --bluePlay: #0f1842;
+        --menuBg: #131b31;
+        --inputBg: #18223d;
       }
 
       html[data-theme="dark"] {
@@ -105,27 +107,38 @@
 
       .upload-label {
         position: absolute;
-        display: flex;
         font-size: 1rem;
-        justify-content: space-between;
         right: 0;
-        bottom: calc(8vh + 10px);
+        bottom: calc(8vh + 75px);
         width: 100%;
         padding: 15px;
-        background-color: grey;
-        color: white;
+        text-align: center;
+        color: var(--primaryFg);
       }
 
       .bottom {
         position: absolute;
         width: 100%;
+        height: 125px;
         bottom: 0;
       }
 
+      .bottom-bg {
+        background-color: #1f52e9;
+        opacity: 0.23;
+        width: 100vw;
+        height: 100%;
+        position: absolute;
+        top: 0;
+      }
+
       .bottom-bar {
+        z-index: 1;
         position: relative;
+        padding: 0 5px;
         width: 100%;
-        bottom: 0;
+        height: 63%;
+        bottom: -10px;
         display: flex;
         justify-content: space-between;
       }
@@ -136,8 +149,8 @@
       }
 
       .btn {
-        padding: 10px 15px;
-        border-radius: 3px;
+        padding: 10px 20px;
+        border-radius: 5px;
         margin: 5px;
         cursor: pointer;
       }
@@ -146,7 +159,7 @@
         left: 0;
         bottom: 0;
         padding: 10px;
-        background-color: #172a84;
+        background-color: #1f52e9;
         width: 100%;
         text-transform: uppercase;
       }
@@ -220,7 +233,7 @@
         position: relative;
         width: 100%;
         background-color: var(--secondRGBA);
-        height: 25px;
+        height: 28px;
       }
 
       .duration {
@@ -248,6 +261,11 @@
         margin-bottom: 50px;
         text-align: center;
         font-size: 36vw;
+        font-weight: 100;
+      }
+
+      .disabled {
+        opacity: 0.13;
       }
 
       .login,

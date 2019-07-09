@@ -79,12 +79,12 @@
   border-radius: 5px;
   height: calc(60vh);
   width: 100vw;
-  background-color: #585858;
+  background-color: var(--menuBg);
   color: white;
 }
 
 .items-container {
-  height: calc(100% - 105px);
+  height: calc(100% - 125px);
   overflow-y: scroll;
 }
 
@@ -131,8 +131,10 @@
   position: absolute;
   display: flex;
   justify-content: space-around;
-  bottom: 10px;
+  bottom: 20px;
+  left: 7px;
   width: calc(100% - 40px);
+  height: initial;
   text-align: center;
 }
 
@@ -160,11 +162,12 @@
 
 .help-container,
 .changelog-container {
-  position: absolute;
+  position: fixed;
+  top: 0;
   z-index: 16;
   width: 100vw;
   height: 100vh;
-  background: #585858;
+  background: var(--menuBg);
   margin: 0;
   padding: 0 15px;
   border-radius: 3px;
@@ -190,14 +193,16 @@
   flex-direction: column;
   align-items: flex-end;
 }
+
 .help-container label {
   font-size: 1rem;
 }
+
 .help-container input {
   width: 100%;
   font-size: 1rem;
   margin-top: 5px;
-  background-color: #838383;
+  background-color: var(--inputBg);
   color: white;
 }
 
@@ -207,7 +212,7 @@
   height: 170px;
   padding: 15px;
   border: none;
-  background-color: #838383;
+  background-color: var(--inputBg);
   color: white;
   border-radius: 3px;
 }
@@ -303,7 +308,7 @@
 
 .overlay {
   z-index: 9;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
@@ -453,7 +458,7 @@ div.loading-container {
 
   .input-audio + label {
     left: 0;
-    bottom: calc(15vh + 10px);
+    bottom: calc(15vh + 60px);
   }
 
   .login input,

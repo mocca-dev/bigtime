@@ -19,14 +19,14 @@ const ChangeLog = ({ close }) => {
         </button>
       </header>
       <section>
-        {/* <h3>Nuevas Funcionalidades</h3>
+        <h3>Mejoras Visuales</h3>
         <ul>
-          <li>
-            Ahora el último tema cargado se volverá a cargar cuando se abra la
-            aplicación.
-          </li>
+          <li>Mejoras visuales para una mejor experiencia de usuario.</li>
         </ul>
-        <h3>Bugs Arreglados</h3> */}
+        <h3>Bugs Arreglados</h3>
+        <ul>
+          <li>Error al primer intento de logeo despues del registro.</li>
+        </ul>
       </section>
     </div>
   );

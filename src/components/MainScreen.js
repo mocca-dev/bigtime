@@ -203,12 +203,7 @@ const MainScreen = ({ update, signOut, profilePic, user }) => {
           cancelAction={null}
         />
       )}
-      <ProgressBar
-        progressWidth={progressWidth}
-        onMouseDown={e => songName && convertOffsetXToCurrentTime(e)}
-        duration={playerRef.current ? playerRef.current.duration : 0}
-      />
-      <TimeDisplay minutes={minutes} seconds={seconds} />
+      <TimeDisplay minutes={minutes} seconds={seconds} empty={!songName} />
       <audio
         ref={playerRef}
         onTimeUpdate={() => {
@@ -259,6 +254,11 @@ const MainScreen = ({ update, signOut, profilePic, user }) => {
             setShowSettings={setShowSettings}
           />
         )}
+        <ProgressBar
+          progressWidth={progressWidth}
+          onMouseDown={e => songName && convertOffsetXToCurrentTime(e)}
+          duration={playerRef.current ? playerRef.current.duration : 0}
+        />
         <div className="bottom-bar">
           <div className="left-btns">
             <SettingsBtn
@@ -287,6 +287,7 @@ const MainScreen = ({ update, signOut, profilePic, user }) => {
             )}
           </ReactNoSleep>
         </div>
+        <div className="bottom-bg" />
       </div>
     </Fragment>
   );

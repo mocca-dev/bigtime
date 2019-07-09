@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const TimeDisplay = ({ minutes, seconds }) => (
-  <div className="time-display">
+const TimeDisplay = ({ minutes, seconds, empty }) => (
+  <div className={empty ? "time-display disabled" : "time-display"}>
     <span>{minutes}</span>
     <span>:{seconds}</span>
   </div>

@@ -26,7 +26,7 @@ const ProgressBar = ({ progressWidth, onMouseDown, duration }) => {
   return (
     <div className="progress-bar-container" onMouseDown={e => onMouseDown(e)}>
       <span className="progress-bar" style={{ width: progressWidth + "vw" }} />
-      <div className="duration">{toTime(duration)}</div>
+      {/* <div className="duration">{toTime(duration)}</div> */}
     </div>
   );
 };
