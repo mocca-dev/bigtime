@@ -28,7 +28,9 @@ const TimeDisplay = ({ minutes, seconds, empty, duration }) => (
       <span>{minutes}</span>
       <span>:{seconds}</span>
     </div>
-    <div className="duration">{toTime(duration)}</div>
+    <div className={empty ? "duration disabled" : "duration"}>
+      {toTime(duration)}
+    </div>
   </Fragment>
 );
 
