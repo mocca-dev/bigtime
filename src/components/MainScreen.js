@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, Fragment } from "react";
+import React, { useState, useEffect, useRef, Fragment, lazy } from "react";
 import PropTypes from "prop-types";
 import localforage from "localforage";
 
@@ -7,13 +7,12 @@ import ProgressBar from "./ProgressBar";
 import AudioUpload from "./AudioUpload";
 import ToggleBtn from "./ToggleBtn";
 import SettingsBtn from "./setting/SettingsBtn";
-import SettingsBar from "./setting/SettingsBar";
 import { PlaySVG, PauseSVG, StopSVG } from "./Icons";
 import Modal from "./Modal";
-import withAuthentication from "./withAuthentication";
 import ReactNoSleep from "react-no-sleep";
+const SettingsBar = lazy(() => import("./setting/SettingsBar"));
 
-const MainScreen = ({ update, signOut, profilePic, user }) => {
+const MainScreen = ({ update }) => {
   const [minutes, setMinutes] = useState("00");
   const [seconds, setSeconds] = useState("00");
   const [playing, setPlaying] = useState(false);
@@ -23,7 +22,6 @@ const MainScreen = ({ update, signOut, profilePic, user }) => {
   const [bucle, setBucle] = useState(true);
   const [progressWidth, setProgressWidth] = useState(0);
   const [showDelayModal, setShowDelayModal] = useState(false);
-  const [showSignOutModal, setShowSignOutModal] = useState(false);
   const [showFileTypeModal, setShowFileTypeModal] = useState(false);
   const [showFileLoading, setShowFileLoading] = useState(false);
 
@@ -172,28 +170,12 @@ const MainScreen = ({ update, signOut, profilePic, user }) => {
     }
   };
 
-  const signOutOK = () => {
-    return new Promise(function(resolve, reject) {
-      signOut();
-      resolve(true);
-    });
-  };
-
   const persistSettings = (name, value) => {
     localStorage.setItem(name, value);
   };
 
   return (
     <Fragment>
-      {showSignOutModal && (
-        <Modal
-          title="Salir"
-          bodyTxt="Está seguro que desea cerrar sesión?"
-          hideModal={() => setShowSignOutModal(false)}
-          okAction={() => signOutOK()}
-          cancelAction={() => new Promise((resolve, reject) => resolve(true))}
-        />
-      )}
       {showFileTypeModal && (
         <Modal
           title="Tipo de archivo incorrecto"
@@ -232,8 +214,7 @@ const MainScreen = ({ update, signOut, profilePic, user }) => {
               bucle: bucle,
               theme: theme,
               update: update,
-              profilePic: null,
-              user: user
+              profilePic: null
             }}
             actions={{
               toggleBucle: () => {
@@ -249,7 +230,6 @@ const MainScreen = ({ update, signOut, profilePic, user }) => {
                 );
               },
               showDelayModal: () => setShowDelayModal(!showDelayModal),
-              signOut: () => setShowSignOutModal(true),
               clearSong: () => {
                 setSongName("");
                 playerRef.current.src = "";
@@ -297,11 +277,9 @@ const MainScreen = ({ update, signOut, profilePic, user }) => {
   );
 };
 
-export default withAuthentication(MainScreen);
-// export default MainScreen;
+export default MainScreen;
 
 MainScreen.propTypes = {
   update: PropTypes.bool.isRequired,
-  signOut: PropTypes.func.isRequired,
   profilePic: PropTypes.string.isRequired
 };

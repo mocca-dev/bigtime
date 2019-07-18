@@ -198,10 +198,16 @@
   font-size: 1rem;
 }
 
+.help-input-row {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
 .help-container input {
   width: 100%;
   font-size: 1rem;
-  margin-top: 5px;
+  margin-top: 10px;
+  padding: 15px;
   background-color: var(--inputBg);
   color: white;
 }
@@ -213,6 +219,7 @@
   height: 170px;
   padding: 15px;
   border: none;
+  margin-top: 10px;
   background-color: var(--inputBg);
   color: white;
   border-radius: 3px;

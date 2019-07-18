@@ -4,7 +4,7 @@ import { firestore, firebase } from "../firebase/firebase";
 import { CloseSVG, LoadingSVG, CheckSVG } from "./Icons";
 
 const sendMsg = (user, message, onSending, onSent, close) => {
-  const doc = firestore.collection("help-msg").doc(user.uid);
+  const doc = firestore.collection("help-msg").doc();
   onSending(true);
   doc.get().then(help => {
     if (!help.exists) {
@@ -46,11 +46,11 @@ const sendMsg = (user, message, onSending, onSent, close) => {
   });
 };
 
-const Help = ({ close, user }) => {
+const Help = ({ close }) => {
   const [message, setMessage] = useState("");
   const [sending, setSending] = useState("");
   const [sent, setSent] = useState("");
-  const [localUser, setLocalUser] = useState(user);
+  const [user, setUser] = useState({});
 
   return (
     <span className="help-container">
@@ -65,53 +65,47 @@ const Help = ({ close, user }) => {
           Si tenes alguna duda o sugerencia por favor escribinos y vamos a
           responderte cuanto antes.
         </p>
-        {user.uid === "a" && (
-          <div>
-            <label htmlFor="name">Nombre y Apellido</label>
-            <input
-              type="text"
-              name="name"
-              onChange={e =>
-                setLocalUser({ ...localUser, displayName: e.target.value })
-              }
-              disabled={sending || sent}
-            />
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              name="email"
-              onChange={e =>
-                setLocalUser({ ...localUser, email: e.target.value })
-              }
-              disabled={sending || sent}
-            />
-          </div>
-        )}
-        <textarea
-          name=""
-          id=""
-          row="30"
-          maxLength="500"
-          onChange={e => setMessage(e.target.value)}
-          disabled={sending || sent}
-        />
+        <div className="help-input-row">
+          <label htmlFor="name">Nombre y Apellido</label>
+          <input
+            type="text"
+            name="name"
+            onChange={e => setUser({ ...user, displayName: e.target.value })}
+            disabled={sending || sent}
+          />
+        </div>
+        <div className="help-input-row">
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            name="email"
+            onChange={e => setUser({ ...user, email: e.target.value })}
+            disabled={sending || sent}
+          />
+        </div>
+        <div className="help-input-row">
+          <label htmlFor="message">Mensaje</label>
+          <textarea
+            name="message"
+            row="30"
+            maxLength="500"
+            onChange={e => setMessage(e.target.value)}
+            disabled={sending || sent}
+          />
+        </div>
         <div>
           {message.length}/500 {message.length >= 480 && "!"}
         </div>
         <button
           className="btn btn-default"
-          onClick={() =>
-            sendMsg(localUser, message, setSending, setSent, close)
-          }
+          onClick={() => sendMsg(user, message, setSending, setSent, close)}
           disabled={
-            user.uid === "a"
-              ? !localUser.displayName ||
-                !localUser.email ||
-                !message.length ||
-                !message ||
-                sending ||
-                sent
-              : !message || sending || sent
+            !user.displayName ||
+            !user.email ||
+            !message.length ||
+            !message ||
+            sending ||
+            sent
           }
         >
           {!sending && !sent ? (

@@ -10,7 +10,6 @@ import {
   SunSVG,
   RefreshSVG,
   TrashSVG,
-  LogOutSVG,
   HelpSVG
 } from "../Icons";
 import SettingItem from "./SettingItem";
@@ -19,8 +18,8 @@ import ChangeLog from "./ChangeLog";
 import Help from "../Help";
 
 const SettingsBar = ({ data, actions, setShowSettings }) => {
-  const { theme, bucle, user } = data;
-  const { setTheme, toggleBucle, signOut, clearSong } = actions;
+  const { theme, bucle } = data;
+  const { setTheme, toggleBucle, clearSong } = actions;
 
   const [showChangeLog, setShowChangeLog] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
@@ -78,7 +77,7 @@ const SettingsBar = ({ data, actions, setShowSettings }) => {
       <OutsideClick action={() => setShowSettings(false)}>
         <Fragment>
           {showChangeLog && <ChangeLog close={() => setShowChangeLog(false)} />}
-          {showHelp && <Help close={() => setShowHelp(false)} user={user} />}
+          {showHelp && <Help close={() => setShowHelp(false)} />}
           <div className="setting-bar-container">
             <div className="settings-bar">
               <header>
@@ -101,10 +100,6 @@ const SettingsBar = ({ data, actions, setShowSettings }) => {
               <div className="bottom-bar">
                 <button onClick={() => setShowHelp(true)}>
                   <HelpSVG /> <span>Ayuda</span>
-                </button>
-                <button onClick={signOut}>
-                  <LogOutSVG />
-                  <span>Cerrar Sesión</span>
                 </button>
               </div>
             </div>
