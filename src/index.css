@@ -457,7 +457,7 @@ div.loading-container {
   .time-display {
     position: relative;
     margin-top: 10px;
-    font-size: 15rem;
+    font-size: 30vw;
     line-height: 12rem;
   }
 
