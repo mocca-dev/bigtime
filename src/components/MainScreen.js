@@ -134,7 +134,7 @@ const MainScreen = ({ update }) => {
     if (songName && player) {
       player.pause();
       player.currentTime = 0;
-      togglePlay();
+      setPlaying(false);
     }
   };
 
