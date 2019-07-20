@@ -1,11 +1,12 @@
 import React, { Component, Suspense, lazy } from "react";
 import UpdateCheck from "./components/UpdateCheck";
+import LoadingScreen from "./components/LoadingScreen";
 
 const MainScreen = lazy(() => import("./components/MainScreen"));
 
 class App extends Component {
   constructor(props) {
-    super();
+    super(props);
     this.state = {
       update: false
     };
@@ -23,7 +24,7 @@ class App extends Component {
           sWPromise={sWPromise}
           setUpdate={() => this.setState({ update: true })}
         />
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<LoadingScreen />}>
           <MainScreen update={this.state.update} profilePic={""} />
         </Suspense>
       </div>

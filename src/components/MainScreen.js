@@ -1,4 +1,11 @@
-import React, { useState, useEffect, useRef, Fragment, lazy } from "react";
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  Fragment,
+  Suspense,
+  lazy
+} from "react";
 import PropTypes from "prop-types";
 import localforage from "localforage";
 
@@ -10,6 +17,7 @@ import SettingsBtn from "./setting/SettingsBtn";
 import { PlaySVG, PauseSVG, StopSVG } from "./Icons";
 import Modal from "./Modal";
 import ReactNoSleep from "react-no-sleep";
+import LoadingScreen from "./LoadingScreen";
 const SettingsBar = lazy(() => import("./setting/SettingsBar"));
 
 const MainScreen = ({ update }) => {
@@ -209,35 +217,37 @@ const MainScreen = ({ update }) => {
       />
       <div className="bottom">
         {showSettings && (
-          <SettingsBar
-            data={{
-              bucle: bucle,
-              theme: theme,
-              update: update,
-              profilePic: null
-            }}
-            actions={{
-              toggleBucle: () => {
-                setBucle(!bucle);
-                persistSettings("bucle", !bucle);
-              },
-              setTheme: () => {
-                setTheme(!theme);
-                persistSettings("theme", !theme);
-                document.documentElement.setAttribute(
-                  "data-theme",
-                  !theme ? "light" : "dark"
-                );
-              },
-              showDelayModal: () => setShowDelayModal(!showDelayModal),
-              clearSong: () => {
-                setSongName("");
-                playerRef.current.src = "";
-                indexedDB.deleteDatabase("localforage");
-              }
-            }}
-            setShowSettings={setShowSettings}
-          />
+          <Suspense fallback={<LoadingScreen />}>
+            <SettingsBar
+              data={{
+                bucle: bucle,
+                theme: theme,
+                update: update,
+                profilePic: null
+              }}
+              actions={{
+                toggleBucle: () => {
+                  setBucle(!bucle);
+                  persistSettings("bucle", !bucle);
+                },
+                setTheme: () => {
+                  setTheme(!theme);
+                  persistSettings("theme", !theme);
+                  document.documentElement.setAttribute(
+                    "data-theme",
+                    !theme ? "light" : "dark"
+                  );
+                },
+                showDelayModal: () => setShowDelayModal(!showDelayModal),
+                clearSong: () => {
+                  setSongName("");
+                  playerRef.current.src = "";
+                  indexedDB.deleteDatabase("localforage");
+                }
+              }}
+              setShowSettings={setShowSettings}
+            />
+          </Suspense>
         )}
         <ProgressBar
           progressWidth={progressWidth}
