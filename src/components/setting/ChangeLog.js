@@ -23,10 +23,10 @@ const ChangeLog = ({ close }) => {
         <ul>
           <li>Mejoras visuales para una mejor experiencia de usuario.</li>
         </ul>
-        <h3>Bugs Arreglados</h3>
+        {/* <h3>Bugs Arreglados</h3>
         <ul>
           <li>Error al primer intento de logeo despues del registro.</li>
-        </ul>
+        </ul> */}
       </section>
     </div>
   );
