@@ -78,30 +78,28 @@ const SettingsBar = ({ data, actions, setShowSettings }) => {
         <Fragment>
           {showChangeLog && <ChangeLog close={() => setShowChangeLog(false)} />}
           {showHelp && <Help close={() => setShowHelp(false)} />}
-          <div className="setting-bar-container">
-            <div className="settings-bar">
-              <header>
-                <span>
-                  <h2>Ajustes</h2>
-                  <Version onClick={() => setShowChangeLog(true)} />
-                </span>
-                <button
-                  className="close-btn"
-                  onClick={() => setShowSettings(false)}
-                >
-                  <CloseSVG />
-                </button>
-              </header>
-              <div className="items-container">
-                {items.map((item, i) => (
-                  <SettingItem item={item} key={i} />
-                ))}
-              </div>
-              <div className="bottom-bar">
-                <button onClick={() => setShowHelp(true)}>
-                  <HelpSVG /> <span>Ayuda</span>
-                </button>
-              </div>
+          <div className="settings-bar">
+            <header>
+              <span>
+                <h2>Ajustes</h2>
+                <Version onClick={() => setShowChangeLog(true)} />
+              </span>
+              <button
+                className="close-btn"
+                onClick={() => setShowSettings(false)}
+              >
+                <CloseSVG />
+              </button>
+            </header>
+            <div className="items-container">
+              {items.map((item, i) => (
+                <SettingItem item={item} key={i} />
+              ))}
+            </div>
+            <div className="bottom-bar">
+              <button onClick={() => setShowHelp(true)}>
+                <HelpSVG /> <span>Ayuda</span>
+              </button>
             </div>
           </div>
         </Fragment>

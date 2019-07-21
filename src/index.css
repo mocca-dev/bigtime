@@ -65,15 +65,10 @@
   transform: rotate(45deg);
 }
 
-.setting-bar-container {
-  width: 100vw;
-  height: calc(100vh - 56px);
-}
-
 .settings-bar {
   z-index: 10;
   position: absolute;
-  bottom: 56px;
+  bottom: 90px;
   padding: 10px 20px;
   margin: auto;
   border-radius: 5px;
@@ -458,7 +453,7 @@ div.loading-container {
     position: relative;
     margin-top: 10px;
     font-size: 30vw;
-    line-height: 12rem;
+    line-height: 50vh;
   }
 
   .btn-stop {
@@ -467,7 +462,7 @@ div.loading-container {
 
   .input-audio + label {
     left: 0;
-    bottom: calc(15vh + 60px);
+    bottom: 135px;
   }
 
   .login input,
@@ -481,5 +476,17 @@ div.loading-container {
 
   .modal-container {
     width: 42%;
+  }
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+  .bottom {
+    left: calc(50vw - 25vw);
+    width: 50vw;
+  }
+
+  .settings-bar {
+    height: 55vh;
+    width: 50vw;
   }
 }
