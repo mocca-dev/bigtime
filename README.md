@@ -2,7 +2,17 @@
 
 ## A little bit of history
 
-One day, a friend of mine ask me for an app to
+One day, a friend of mine ask me for an app and said me something like "I want to play a track and see the time as big as possible on the screen of my phone". He's musician and he need to follow a track not by the score but for the time. So, he want to load a track to play and follow it by the "clock". His first approach was load the track and synchronized a timer. The problem with that approach was the size of the timer, it was too tiny.&nbsp;
+
+The same night, I started to think the first approaches to the app. The next day, I sent him the link to the first version. He was happy but I knew that I wanted to work a little bit more on it.
+
+### Dev Stuffs
+
+In this repo you can find a few different branches. There are two principal and some others are little improvements over the principal ones.&nbsp;
+
+I started in the Master branch applying my react knowledge until that moment. So there you will found Class Components mixed with Functional Components. Until that moment, I had never used React Hooks.&nbsp;
+
+Next I created a new branch call "hook-refactor". Here I started to convert all Class Components to Functional Components and started to use React Hooks. For some time I was looking some excuse to use and learn this new feature of React, so I don't miss the opportunity. I didn't have the need to use any custom hook so you only found useState and useEffect. In this branch I also added a lot of functionality to the app. Login flow with FirebaseAuth was one of those.
 
 <!-- ### `npm start`
 
