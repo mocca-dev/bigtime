@@ -290,6 +290,5 @@ const MainScreen = ({ update }) => {
 export default MainScreen;
 
 MainScreen.propTypes = {
-  update: PropTypes.bool.isRequired,
-  profilePic: PropTypes.string.isRequired
+  update: PropTypes.bool.isRequired
 };

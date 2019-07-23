@@ -1,4 +1,6 @@
 import React, { Component, Suspense, lazy } from "react";
+import { firestore } from "./firebase/firebase";
+
 import UpdateCheck from "./components/UpdateCheck";
 import LoadingScreen from "./components/LoadingScreen";
 
@@ -14,6 +16,25 @@ class App extends Component {
   componentDidMount() {
     const theme = localStorage.getItem("theme") === "true" ? "light" : "dark";
     document.documentElement.setAttribute("data-theme", theme);
+
+    if (window.matchMedia("(display-mode: standalone)").matches) {
+      firestore
+        .collection("visits")
+        .get()
+        .then(doc => {
+          if (!doc.empty) {
+            let { count } = doc.docs[0].data();
+            count += 1;
+            if (!localStorage.getItem("visited")) {
+              localStorage.setItem("visited", "true");
+              firestore
+                .collection("visits")
+                .doc("1")
+                .update({ count });
+            }
+          }
+        });
+    }
   }
 
   render() {
@@ -25,7 +46,7 @@ class App extends Component {
           setUpdate={() => this.setState({ update: true })}
         />
         <Suspense fallback={<LoadingScreen />}>
-          <MainScreen update={this.state.update} profilePic={""} />
+          <MainScreen update={this.state.update} />
         </Suspense>
       </div>
     );
