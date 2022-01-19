@@ -19,6 +19,10 @@
 </div>
 
 
+<div align="center">
+  <img src="images/lighthouse-score.png" alt="Logo" height="80">
+</div>
+<br>
 
 <!-- TABLE OF CONTENTS -->
 <details>
