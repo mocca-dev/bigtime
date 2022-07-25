@@ -18,7 +18,6 @@
   </p>
 </div>
 
-
 <div align="center">
   <img src="images/lighthouse-score.png" alt="Logo" height="80">
 </div>
@@ -51,10 +50,10 @@
   </ol>
 </details>
 
-
-
 <!-- ABOUT THE PROJECT -->
+
 ## About The Project
+
 <div align="center">
   <img src="images/bigtime-screenshot.png" alt="Logo" height="400"> <img src="images/bigtime-screenshot-landscape.png" alt="Logo" height="200">
 </div>
@@ -68,17 +67,14 @@ This was my first app in ReactJS so I wanted to try the "old way" using class co
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
 ### Built With
 
-* [React.js](https://reactjs.org/)
+- [React.js⚛️](https://reactjs.org/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
 <!-- GETTING STARTED -->
+
 ## Getting Started
 
 This app is made with create-react-app so the installation process is simple.
@@ -100,9 +96,8 @@ This app is made with create-react-app so the installation process is simple.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
 <!-- USAGE EXAMPLES -->
+
 ## Usage
 
 ### Load and play
@@ -116,7 +111,8 @@ The key feature of this app is to reproduce a song and show the current time in 
 </div>
 <br>
 
-The app has few settings that you can access to customize some features just clicking in the ⚙️  button: 
+The app has few settings that you can access to customize some features just clicking in the ⚙️ button:
+
 <ul>
   <li>
     Change the <strong>theme</strong> to Dark or Light to avoid eye damage. 
@@ -132,21 +128,18 @@ The app has few settings that you can access to customize some features just cli
   </li>
 </ul>
 
-
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
 <!-- LICENSE -->
+
 ## License
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
 <!-- CONTACT -->
+
 ## Contact
 
 Nicolás Tonelli - nicolastonelli1406@gmail.com
@@ -155,11 +148,9 @@ Project Link: [https://github.com/mocca-dev/bigtime.git](https://github.com/mocc
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
-
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
 [contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
 [contributors-url]: https://github.com/github_username/repo_name/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
