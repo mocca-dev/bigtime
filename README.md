@@ -14,7 +14,7 @@
   <p align="center">
     BigTime born from the request of a friend of mine. He needed an app to load a song and see the current time in big size.
     <br />
-    <a href="https://bigtime.surge.sh/">View Demo</a>
+    <a href="https://mocca-dev.github.io/bigtime/">View Demo</a>
   </p>
 </div>
 

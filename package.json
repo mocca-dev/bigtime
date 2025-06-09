@@ -2,9 +2,11 @@
   "name": "sync-time",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://mocca-dev.github.io/bigtime",
   "dependencies": {
     "cra-append-sw": "^2.6.1",
     "eva-icons": "^1.1.1",
+    "gh-pages": "^6.3.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-scripts": "2.1.8",
@@ -16,7 +18,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "clean-map": "rimraf build/**/*.map",
-    "deploy": "npm run build && npm run clean-map && cd build && surge -d https://bigtime.surge.sh",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "deploy-q": "npm run build && npm run clean-map && cd build && surge -d https://qbigtime.surge.sh",
     "deploy-sm": "npm run build && cd build && surge -d https://bigtime.surge.sh"
   },
