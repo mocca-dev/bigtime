@@ -10,7 +10,7 @@ const AudioUpload = ({ setRef, labelTxt }) => {
         ref={ref => setRef(ref)}
         name="audio-file"
         id="audio-file"
-        accpet="audio/*"
+        accept="audio/*"
       />
       <label htmlFor="audio-file">
         {labelTxt ? labelTxt : "Seleccionar tema..."}

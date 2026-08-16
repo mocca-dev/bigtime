@@ -77,7 +77,7 @@ This was my first app in ReactJS so I wanted to try the "old way" using class co
 
 ## Getting Started
 
-This app is made with create-react-app so the installation process is simple.
+This app is built with Vite so the installation process is simple.
 
 ### Installation and Startup
 

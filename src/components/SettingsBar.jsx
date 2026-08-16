@@ -1,5 +1,4 @@
-import React from "react";
-
+import PropTypes from "prop-types";
 import { RepeatSVG, RepeatSVGDisabled } from "./Icons";
 import ToggleTheme from "./ToggleTheme";
 import ToggleBtn from "./ToggleBtn";
@@ -17,5 +16,10 @@ const SettingsBar = ({ bucle, toggleBucle }) => (
     />
   </div>
 );
+
+SettingsBar.propTypes = {
+  bucle: PropTypes.bool.isRequired,
+  toggleBucle: PropTypes.func.isRequired
+};
 
 export default SettingsBar;

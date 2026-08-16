@@ -1,4 +1,3 @@
-import React from "react";
 import PropTypes from "prop-types";
 
 const ToggleBtn = ({ toggle, value, cClass, IconT, IconF, disabled }) => {
