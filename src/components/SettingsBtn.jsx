@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from "prop-types";
 import { SettingsSVG } from "./Icons";
 
 const SettingsBtn = ({ onClick }) => {
@@ -7,6 +7,10 @@ const SettingsBtn = ({ onClick }) => {
       <SettingsSVG />
     </button>
   );
+};
+
+SettingsBtn.propTypes = {
+  onClick: PropTypes.func.isRequired
 };
 
 export default SettingsBtn;

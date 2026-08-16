@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import TimeDisplay from "./components/TimeDisplay";
 import ProgressBar from "./components/ProgressBar";
 import AudioUpload from "./components/AudioUpload";
@@ -140,7 +141,7 @@ class App extends Component {
           <Toaster
             content="Nueva actualizacion!"
             close={() => this.setState({ showToaster: false })}
-            ok={() => window.location.reload()}
+            ok={() => this.props.appServiceWorker.update()}
           />
         )}
         <ProgressBar
@@ -200,5 +201,20 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  appServiceWorker: PropTypes.shape({
+    onUpdateFound: PropTypes.func.isRequired,
+    update: PropTypes.func.isRequired
+  })
+};
+
+App.defaultProps = {
+  // Lets App render without a service worker (tests, unsupported browsers).
+  appServiceWorker: {
+    onUpdateFound: () => {},
+    update: () => window.location.reload()
+  }
+};
 
 export default App;

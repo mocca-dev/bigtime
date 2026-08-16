@@ -2,34 +2,35 @@
   "name": "sync-time",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "homepage": "https://mocca-dev.github.io/bigtime",
   "dependencies": {
-    "cra-append-sw": "^2.6.1",
-    "eva-icons": "^1.1.1",
+    "prop-types": "^15.8.1",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.5",
+    "@vitejs/plugin-react": "^6.0.5",
+    "eslint": "^9.39.5",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
     "gh-pages": "^6.3.0",
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4",
-    "react-scripts": "5.0.1",
-    "react-service-worker": "^0.1.1"
+    "globals": "^17.11.0",
+    "jsdom": "^27.0.0",
+    "vite": "^8.2.1",
+    "vite-plugin-pwa": "^1.3.0",
+    "vitest": "^4.1.10"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build && cra-append-sw -s ./src/custom-sw.js",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "clean-map": "rimraf build/**/*.map",
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "lint": "eslint .",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "deploy-q": "npm run build && npm run clean-map && cd build && surge -d https://qbigtime.surge.sh",
+    "deploy-q": "npm run build && cd build && surge -d https://qbigtime.surge.sh",
     "deploy-sm": "npm run build && cd build && surge -d https://bigtime.surge.sh"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+  }
 }

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import ToggleBtn from "./ToggleBtn";
 import { MoonSVG, SunSVG } from "./Icons";
 
